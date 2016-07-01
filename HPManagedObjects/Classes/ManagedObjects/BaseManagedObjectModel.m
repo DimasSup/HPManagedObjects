@@ -514,7 +514,7 @@ static const char *getPropertyType(objc_property_t property) {
             if(!description.columnName.length)
                 continue;
             Class class = [self getClassForPrperty:description.propertyName forClass:myClass outClassName:nil];
-            [other appendFormat:@", \"%@\" %@ %@ %@",description.columnName,types[[self databaseClassType:class]],description.required?@"NOT NULL":@"",description.defaultValue?NSStringFormat(@"DEFAULT ('%@')", description.defaultValue):@""];
+            [other appendFormat:@", \"%@\" %@ %@ %@",description.columnName,types[[self databaseClassType:class]],description.required?@"NOT NULL":@"",description.defaultValue?[NSString stringWithFormat:@"DEFAULT ('%@')", description.defaultValue]:@""];
             
             
         }
@@ -589,7 +589,7 @@ static const char *getPropertyType(objc_property_t property) {
     if(!dateFormatter)
     {
         dateFormatter = [[NSDateFormatter alloc] init];
-		dateFormatter.calendar = [[NSCalendar alloc ] initWithCalendarIdentifier:NSGregorianCalendar];
+		dateFormatter.calendar = [[NSCalendar alloc ] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
 		dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
         if(format.length)
             [dateFormatter setDateFormat:format];
