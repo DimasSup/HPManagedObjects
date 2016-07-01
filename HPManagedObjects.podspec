@@ -37,6 +37,7 @@ TODO: Add long description of the pod here.
   # }
 
 
+
   s.public_header_files = 'HPManagedObjects/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'FMDB'
