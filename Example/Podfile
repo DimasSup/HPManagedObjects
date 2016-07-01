@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'HPManagedObjects_Example' do
+  pod 'HPManagedObjects', :path => '../'
+
+  target 'HPManagedObjects_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
