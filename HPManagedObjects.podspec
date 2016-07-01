@@ -25,7 +25,7 @@ TODO: Add long description of the pod here.
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'DimasSup' => 'dima.teleban@gmail.com' }
-  s.source           = { :git => 'https://xp-dev.com/git/HPManagedObjects', :tag => s.version.to_s }
+  s.source           = { :git => 'https://xp-dev.com/git/HPManagedObjects', :tag => "v#{s.version}" }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
