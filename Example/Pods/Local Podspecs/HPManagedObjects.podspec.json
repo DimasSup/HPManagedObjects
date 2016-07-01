@@ -1,0 +1,28 @@
+{
+  "name": "HPManagedObjects",
+  "version": "0.1.0",
+  "summary": "A short description of HPManagedObjects.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://xp-dev.com/git/HPManagedObjects",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "DimasSup": "dima.teleban@gmail.com"
+  },
+  "source": {
+    "git": "https://xp-dev.com/git/HPManagedObjects",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "HPManagedObjects/Classes/**/*",
+  "public_header_files": "HPManagedObjects/Classes/**/*.h",
+  "dependencies": {
+    "FMDB": [
+
+    ]
+  }
+}

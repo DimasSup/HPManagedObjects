@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/<GITHUB_USERNAME>/HPManagedObjects'
+  s.homepage         = 'https://xp-dev.com/git/HPManagedObjects'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'DimasSup' => 'dima.teleban@gmail.com' }
-  s.source           = { :git => 'https://github.com/<GITHUB_USERNAME>/HPManagedObjects.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://xp-dev.com/git/HPManagedObjects', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
@@ -36,7 +36,7 @@ TODO: Add long description of the pod here.
   #   'HPManagedObjects' => ['HPManagedObjects/Assets/*.png']
   # }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
+  s.public_header_files = 'HPManagedObjects/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'FMDB'
 end

@@ -1,0 +1,21 @@
+PODS:
+  - FMDB (2.6.2):
+    - FMDB/standard (= 2.6.2)
+  - FMDB/standard (2.6.2)
+  - HPManagedObjects (0.1.0):
+    - FMDB
+
+DEPENDENCIES:
+  - HPManagedObjects (from `../`)
+
+EXTERNAL SOURCES:
+  HPManagedObjects:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
+  HPManagedObjects: 73c9025f74bc8f6572a3def1b4872a7d9d5185cd
+
+PODFILE CHECKSUM: a0f9294bc267f6b6623bb326a931602d798bc478
+
+COCOAPODS: 1.0.1

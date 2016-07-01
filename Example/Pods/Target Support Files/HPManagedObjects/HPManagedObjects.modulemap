@@ -1,0 +1,6 @@
+framework module HPManagedObjects {
+  umbrella header "HPManagedObjects-umbrella.h"
+
+  export *
+  module * { export * }
+}

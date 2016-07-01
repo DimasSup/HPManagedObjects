@@ -1,0 +1,22 @@
+//
+//  SerializeHelper.h
+//  Little Pal
+//
+//  Created by DimasSup on 03.07.14.
+//  Copyright (c) 2014 BrillKids. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface SerializeHelper : NSObject
+{
+	
+}
+
+
++(NSArray*)newObjectsFromJSONArray:(NSArray*)jsonArray className:(NSString*)className;
++(NSData *)nsDataFromNSObject:(id)object;
++(NSData *)nsDataFromNSArray:(NSArray *)array;
+
++(NSString*) toJsonString:(id)obj prettyPrint:(BOOL)prettyPrint;
+@end

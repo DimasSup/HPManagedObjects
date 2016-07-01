@@ -7,11 +7,15 @@
 //
 
 #import "HPAppDelegate.h"
+@import HPManagedObjects;
+
 
 @implementation HPAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+	BaseManagedObjectModel* object = [BaseManagedObjectModel new];
+	NSDictionary* dic = object.toDictionary;
     // Override point for customization after application launch.
     return YES;
 }
