@@ -1,7 +1,7 @@
 {
   "name": "HPManagedObjects",
   "version": "0.1.0",
-  "summary": "A short description of HPManagedObjects.",
+  "summary": "Lib with BaseManagedObjectModel that allow parse json and database",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "http://hellopal.com",
   "license": {

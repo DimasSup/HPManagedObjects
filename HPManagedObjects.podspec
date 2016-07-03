@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'HPManagedObjects'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of HPManagedObjects.'
+  s.summary          = 'Lib with BaseManagedObjectModel that allow parse json and database'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?

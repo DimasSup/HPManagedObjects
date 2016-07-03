@@ -64,7 +64,7 @@
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 0C7663DA4F1D870F8AEBF88043E45A50;
-			remoteInfo = HPManagedObjects0;
+			remoteInfo = HPManagedObjects8;
 		};
 		9AFB7C98D2FC0EF58749728AD68E0E1C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -460,9 +460,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		0C7663DA4F1D870F8AEBF88043E45A50 /* HPManagedObjects0 */ = {
+		0C7663DA4F1D870F8AEBF88043E45A50 /* HPManagedObjects8 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6CB99155902C1ABBFF46DCD3A2ABBACC /* Build configuration list for PBXNativeTarget "HPManagedObjects0" */;
+			buildConfigurationList = 6CB99155902C1ABBFF46DCD3A2ABBACC /* Build configuration list for PBXNativeTarget "HPManagedObjects8" */;
 			buildPhases = (
 				111B6FE1D87BA214CD1448D590E51337 /* Sources */,
 				CF8E55D1206ABB35811C7CBC22A85B36 /* Frameworks */,
@@ -473,8 +473,8 @@
 			dependencies = (
 				447115B3F9DF68F1AE6B41122FF775EF /* PBXTargetDependency */,
 			);
-			name = HPManagedObjects0;
-			productName = HPManagedObjects0;
+			name = HPManagedObjects8;
+			productName = HPManagedObjects8;
 			productReference = 36A88A740294A4AE2FE0E8E3CCD3C6E8 /* HPManagedObjects.framework */;
 			productType = "com.apple.product-type.framework";
 		};
@@ -553,7 +553,7 @@
 			projectRoot = "";
 			targets = (
 				23CF27B2BA6AC7125EFFEDA8C5AA819F /* FMDB */,
-				0C7663DA4F1D870F8AEBF88043E45A50 /* HPManagedObjects0 */,
+				0C7663DA4F1D870F8AEBF88043E45A50 /* HPManagedObjects8 */,
 				DDDA9E251D9A48A821962F53B6B765B6 /* Pods-HPManagedObjects_Example */,
 				F266A4FE7078FB4A6A03056BFC8FFE05 /* Pods-HPManagedObjects_Tests */,
 			);
@@ -611,8 +611,8 @@
 /* Begin PBXTargetDependency section */
 		2552AF70C85C74B9A69A41C9B18E35FC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = HPManagedObjects0;
-			target = 0C7663DA4F1D870F8AEBF88043E45A50 /* HPManagedObjects0 */;
+			name = HPManagedObjects8;
+			target = 0C7663DA4F1D870F8AEBF88043E45A50 /* HPManagedObjects8 */;
 			targetProxy = 3FF62E92D93E43C2EECDCA19B3A852D5 /* PBXContainerItemProxy */;
 		};
 		447115B3F9DF68F1AE6B41122FF775EF /* PBXTargetDependency */ = {
@@ -970,7 +970,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6CB99155902C1ABBFF46DCD3A2ABBACC /* Build configuration list for PBXNativeTarget "HPManagedObjects0" */ = {
+		6CB99155902C1ABBFF46DCD3A2ABBACC /* Build configuration list for PBXNativeTarget "HPManagedObjects8" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D6A12326C6195AC6D68870675FEF5A58 /* Debug */,
