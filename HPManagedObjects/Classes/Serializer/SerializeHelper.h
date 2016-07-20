@@ -16,6 +16,7 @@
 
 +(NSArray*)newObjectsFromJSONArray:(NSArray*)jsonArray className:(NSString*)className;
 +(NSData *)nsDataFromNSObject:(id)object;
++(NSData *)nsDataFromNSObject:(id)object isJson:(BOOL*)isJson;
 +(NSData *)nsDataFromNSArray:(NSArray *)array;
 
 +(NSString*) toJsonString:(id)obj prettyPrint:(BOOL)prettyPrint;

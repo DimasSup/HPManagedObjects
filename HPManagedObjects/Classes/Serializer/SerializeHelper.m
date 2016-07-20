@@ -24,6 +24,14 @@
 }
 +(NSData *)nsDataFromNSObject:(id)object
 {
+	return [self nsDataFromNSObject:object isJson:NULL];
+}
++(NSData *)nsDataFromNSObject:(id)object isJson:(BOOL*)isJson
+{
+	if(isJson!=NULL)
+	{
+		*isJson = NO;
+	}
 	if(!object)
 		return nil;
 	if([object isKindOfClass:[NSData class]])
@@ -32,6 +40,10 @@
 	}
 	if([object isKindOfClass:[NSArray class]])
 	{
+		if(isJson!=NULL)
+		{
+			*isJson =YES;
+		}
 		return [self nsDataFromNSArray:object];
 
 	}
@@ -39,10 +51,12 @@
     NSDictionary* dictionary  = nil;
     if([object isKindOfClass:[BaseManagedObjectModel class]])
     {
+		
         dictionary = [object toDictionary];
     }
     else if([object isKindOfClass:[NSDictionary class]])
     {
+		
         dictionary = object;
     }
     else
@@ -55,7 +69,10 @@
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dictionary
                                                        options:(NSJSONWritingOptions)0
                                                          error:&error];
-
+	if(isJson!=NULL)
+	{
+		*isJson =YES;
+	}
     return jsonData;
 }
 +(NSData *)nsDataFromNSArray:(NSArray *)array
