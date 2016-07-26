@@ -18,6 +18,6 @@
 		.receiver = instance,
 		.super_class = [self class],
 	};
-	((id (*)(id, SEL)) objc_msgSendSuper)((__bridge id)(&b),selector);
+	((void (*)(struct objc_super *, SEL)) objc_msgSendSuper)(&b,selector);
 }
 @end
