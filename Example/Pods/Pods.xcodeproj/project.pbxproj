@@ -27,6 +27,8 @@
 		756D89BBACEAF3214029EC382674418A /* Pods-HPManagedObjects_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E2AA7B641B038FF1A8995F72A3734D5A /* Pods-HPManagedObjects_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7C818AE74E830311E61FF1A7E42D0713 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF62A1F971FFFC84C36F474CF296297 /* FMResultSet.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		82483C23CE6D8798D6EFD19E15E9A08D /* NSObject+ClassName.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D404D200651829E80ED8BC05E98A074 /* NSObject+ClassName.m */; };
+		847363571D47BC1B00D30ECC /* NSObject+CallInstanceMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = 847363551D47BC1B00D30ECC /* NSObject+CallInstanceMethod.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		847363581D47BC1B00D30ECC /* NSObject+CallInstanceMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 847363561D47BC1B00D30ECC /* NSObject+CallInstanceMethod.m */; };
 		8EFA7FD29252BCB8AA0841C5F852D831 /* Pods-HPManagedObjects_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B27211F779F91CFDC98B89264D4AC5 /* Pods-HPManagedObjects_Example-dummy.m */; };
 		8FD0B67D285B107A1CE37F2F4301CF24 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C9B9008DA230F7311D67B7F84A21CB6 /* Foundation.framework */; };
 		94BF9C4F11808AE746D364CB3B43A73D /* BaseManagedObjectModel+FMDB.h in Headers */ = {isa = PBXBuildFile; fileRef = EC1C055877BB5FDBC39DA07F4284C733 /* BaseManagedObjectModel+FMDB.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -103,6 +105,8 @@
 		73E08DD3F409CC910BDF9AAC0E1BEB35 /* FMDB.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDB.h; path = src/fmdb/FMDB.h; sourceTree = "<group>"; };
 		774678108D22A09213789D973E2051AC /* FMDB-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FMDB-umbrella.h"; sourceTree = "<group>"; };
 		7D404D200651829E80ED8BC05E98A074 /* NSObject+ClassName.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ClassName.m"; sourceTree = "<group>"; };
+		847363551D47BC1B00D30ECC /* NSObject+CallInstanceMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CallInstanceMethod.h"; sourceTree = "<group>"; };
+		847363561D47BC1B00D30ECC /* NSObject+CallInstanceMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CallInstanceMethod.m"; sourceTree = "<group>"; };
 		8AF0AFA0F58BCA929ABB08738557BF45 /* Pods_HPManagedObjects_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HPManagedObjects_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DF62A1F971FFFC84C36F474CF296297 /* FMResultSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = src/fmdb/FMResultSet.m; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -236,6 +240,8 @@
 				48D35E8A1B3FAB24ECD3FEED31001F5D /* Macroses.h */,
 				008443B69DFD5D85B301B43F5763EFBA /* NSObject+ClassName.h */,
 				7D404D200651829E80ED8BC05E98A074 /* NSObject+ClassName.m */,
+				847363551D47BC1B00D30ECC /* NSObject+CallInstanceMethod.h */,
+				847363561D47BC1B00D30ECC /* NSObject+CallInstanceMethod.m */,
 			);
 			path = HelpClasses;
 			sourceTree = "<group>";
@@ -417,6 +423,7 @@
 				06FDC893F2F8773B6124DD054BDDDF51 /* BaseManagedObjectModel.h in Headers */,
 				C27123C138C81D176DCA20B6CDCED6E8 /* BaseManagedObjectModel_Private.h in Headers */,
 				0CBCC3434D5F53DAF664F44E6D50C246 /* Generic.h in Headers */,
+				847363571D47BC1B00D30ECC /* NSObject+CallInstanceMethod.h in Headers */,
 				977EECF237938BAA9B77BD8B68884180 /* HPManagedObjects-umbrella.h in Headers */,
 				A300BC949BBEAF42472D0B25ADB9AA99 /* Macroses.h in Headers */,
 				AB81A7AF229ADFEEA9B243A1A965476C /* Mapping.h in Headers */,
@@ -566,6 +573,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				606BD7172A55C6124C60EC08309FFC14 /* BaseManagedObjectModel+FMDB.m in Sources */,
+				847363581D47BC1B00D30ECC /* NSObject+CallInstanceMethod.m in Sources */,
 				BD490D841F89DC4C523F7D853E3C5CEE /* BaseManagedObjectModel.m in Sources */,
 				F1F805A5E273D23E4016BB9012AA4F4E /* Generic.m in Sources */,
 				24F9D310F80D663BDAE56DE9C99C25D1 /* HPManagedObjects-dummy.m in Sources */,
