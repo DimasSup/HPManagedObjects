@@ -25,6 +25,8 @@
 		7C818AE74E830311E61FF1A7E42D0713 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF62A1F971FFFC84C36F474CF296297 /* FMResultSet.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		7D8237B1BBBC7E4634EAAC0EB3238CF5 /* NSObject+CallInstanceMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = A8B4997D802C43E5C60238961C256B28 /* NSObject+CallInstanceMethod.m */; };
 		80C4F86F12526558D17CA5CCE4474233 /* BaseManagedObjectModel_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 2748071AC8E1E8347A4461C5053F1A0E /* BaseManagedObjectModel_Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8446EAAB1D4FA6880072964F /* HPDelegatesContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 8446EAA91D4FA6880072964F /* HPDelegatesContainer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8446EAAC1D4FA6880072964F /* HPDelegatesContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8446EAAA1D4FA6880072964F /* HPDelegatesContainer.m */; };
 		86D0B44CA18227209F34A1545006BCFE /* BaseManagedObjectModel.m in Sources */ = {isa = PBXBuildFile; fileRef = EE01A912CD99A6F1E31F8DB2AA4DC76B /* BaseManagedObjectModel.m */; };
 		872A50B9908E3CE568D111E8A25EB658 /* NSObject+CallInstanceMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = 00A296ABBF0973EE8480F52693F10428 /* NSObject+CallInstanceMethod.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8EFA7FD29252BCB8AA0841C5F852D831 /* Pods-HPManagedObjects_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 17B27211F779F91CFDC98B89264D4AC5 /* Pods-HPManagedObjects_Example-dummy.m */; };
@@ -106,6 +108,8 @@
 		6E92E1D10C2A40D5FDA0F30F8F337385 /* Pods-HPManagedObjects_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-HPManagedObjects_Example.release.xcconfig"; sourceTree = "<group>"; };
 		73E08DD3F409CC910BDF9AAC0E1BEB35 /* FMDB.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDB.h; path = src/fmdb/FMDB.h; sourceTree = "<group>"; };
 		774678108D22A09213789D973E2051AC /* FMDB-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FMDB-umbrella.h"; sourceTree = "<group>"; };
+		8446EAA91D4FA6880072964F /* HPDelegatesContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HPDelegatesContainer.h; sourceTree = "<group>"; };
+		8446EAAA1D4FA6880072964F /* HPDelegatesContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HPDelegatesContainer.m; sourceTree = "<group>"; };
 		8AF0AFA0F58BCA929ABB08738557BF45 /* Pods_HPManagedObjects_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HPManagedObjects_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DBCF227CBD7C99D66192F1E2B7DE68A /* SerializeHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SerializeHelper.m; sourceTree = "<group>"; };
 		8DF62A1F971FFFC84C36F474CF296297 /* FMResultSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = src/fmdb/FMResultSet.m; sourceTree = "<group>"; };
@@ -216,6 +220,8 @@
 		15E58C560065EB8FEF39BA796E90F9FC /* HelpClasses */ = {
 			isa = PBXGroup;
 			children = (
+				8446EAA91D4FA6880072964F /* HPDelegatesContainer.h */,
+				8446EAAA1D4FA6880072964F /* HPDelegatesContainer.m */,
 				B0DAA86DA6CE5697A93B6FD6D9DD842F /* Generic.h */,
 				38564B761D0EE045355FF8011EAF986C /* Generic.m */,
 				574F4AAAF3B2C85DFDC5F6F0A1E0311F /* Macroses.h */,
@@ -458,6 +464,7 @@
 				BAA948D7662394545CAC6E795E71CAEE /* Mapping.h in Headers */,
 				5F88D86A39F4419143BB1351398F5293 /* MappingDescriptor.h in Headers */,
 				872A50B9908E3CE568D111E8A25EB658 /* NSObject+CallInstanceMethod.h in Headers */,
+				8446EAAB1D4FA6880072964F /* HPDelegatesContainer.h in Headers */,
 				2BF9B88C06DC863C76A40C8AD983C413 /* NSObject+ClassName.h in Headers */,
 				C2733FAF4FCFBB2D2157D49D5F291AC3 /* SerializeHelper.h in Headers */,
 				AD3BBF1636E5839778FA2EEDE1AD141F /* TypeSelector.h in Headers */,
@@ -578,6 +585,7 @@
 				6C929A925DD0EA20D4697AF5E08B100D /* HPManagedObjects-dummy.m in Sources */,
 				E32A9463A61AE41929362F913877EBA2 /* Mapping.m in Sources */,
 				96B31A17F6246F30C5B7B01A4673C86E /* MappingDescriptor.m in Sources */,
+				8446EAAC1D4FA6880072964F /* HPDelegatesContainer.m in Sources */,
 				7D8237B1BBBC7E4634EAAC0EB3238CF5 /* NSObject+CallInstanceMethod.m in Sources */,
 				9FDE4DA1DEB49BF14872444290D8A191 /* NSObject+ClassName.m in Sources */,
 				94F2E164DBDBF0D40C998C784BB618F7 /* SerializeHelper.m in Sources */,
