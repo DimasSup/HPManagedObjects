@@ -7,7 +7,7 @@
 //
 #import "Generic.h"
 #import "Macroses.h"
-static BOOLExt GenericHelper_isRetina = BOOLExtNotDefined;
+static int GenericHelper_isRetina = -1;
 
 
 
@@ -32,8 +32,8 @@ static BOOLExt GenericHelper_isRetina = BOOLExtNotDefined;
 }
 
 +(BOOL)isRetina {
-	if (GenericHelper_isRetina == BOOLExtNotDefined) {
-		GenericHelper_isRetina = [[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2 ? BOOLExtYES : BOOLExtNO;
+	if (GenericHelper_isRetina == -1) {
+		GenericHelper_isRetina = [[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2 ? 1 : 0;
 	}
 	return	GenericHelper_isRetina;
 }

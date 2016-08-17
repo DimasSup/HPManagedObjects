@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
 
 #import "Generic.h"
+#import "HPDelegatesContainer.h"
 #import "Macroses.h"
 #import "NSObject+CallInstanceMethod.h"
 #import "NSObject+ClassName.h"
