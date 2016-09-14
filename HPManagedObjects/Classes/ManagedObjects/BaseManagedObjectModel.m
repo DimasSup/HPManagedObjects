@@ -391,7 +391,7 @@ static const char *getPropertyType(objc_property_t property) {
 		{
 			continue;
 		}
-		if(selectedFields && [selectedFields containsObject:descriptor.propertyName])
+		if(selectedFields && ![selectedFields containsObject:descriptor.propertyName])
 		{
 			continue;
 		}
