@@ -121,11 +121,17 @@ static const char *getPropertyType(objc_property_t property) {
 			
 			// TODO:  check this logic !value
 			
+			if(!value)
+			{
+				continue;
+			}
+			
 			if(value == [NSNull null])
 			{
 				[self setValue:nil forKey:descriptor.propertyName];
 				continue;
 			}
+			
 			
 			if ([descriptor.resultPropertyClass isSubclassOfClass:[NSArray class]])
 			{
