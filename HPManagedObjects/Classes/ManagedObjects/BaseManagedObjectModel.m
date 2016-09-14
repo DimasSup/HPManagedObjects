@@ -373,7 +373,7 @@ static const char *getPropertyType(objc_property_t property) {
 }
 -(NSDictionary *)toDictionary
 {
-	[self toDictionary:nil];
+	return [self toDictionary:nil];
 }
 
 -(NSDictionary *)toDictionary:(NSSet* _Nullable)selectedFields
