@@ -119,10 +119,11 @@ static const char *getPropertyType(objc_property_t property) {
 			
 			id value = [dictionary objectForKey:descriptor.jsonName];
 			
-			// FIXME: !value
+			// TODO:  check this logic !value
 			
 			if(value == [NSNull null])
 			{
+				[self setValue:descriptor.propertyName forKey:nil];
 				continue;
 			}
 			
