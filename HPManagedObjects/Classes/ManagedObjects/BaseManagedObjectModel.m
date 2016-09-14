@@ -85,8 +85,6 @@ static const char *getPropertyType(objc_property_t property) {
     return "";
 }
 
-
-
 - (id)updateWithDictionary:(id)dictionary
 {
 	@autoreleasepool {
@@ -373,9 +371,12 @@ static const char *getPropertyType(objc_property_t property) {
             }
     return nestedArray;
 }
-
-
 -(NSDictionary *)toDictionary
+{
+	[self toDictionary:nil];
+}
+
+-(NSDictionary *)toDictionary:(NSSet* _Nullable)selectedFields
 {
     Class myClass = self.class;
 	Mapping* mapping = [myClass getCachedMapping];
@@ -386,6 +387,10 @@ static const char *getPropertyType(objc_property_t property) {
 			|| !descriptor.propertyName
 #endif
 			)
+		{
+			continue;
+		}
+		if(selectedFields && [selectedFields containsObject:descriptor.propertyName])
 		{
 			continue;
 		}

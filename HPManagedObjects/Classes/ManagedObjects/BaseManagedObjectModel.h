@@ -46,6 +46,12 @@
  */
 -(NSDictionary *)toDictionary;
 
+/*!
+ * @brief Serialize selected fields from instance to JSON Dictrionary
+ * @return JSON dictionary
+ */
+-(NSDictionary *)toDictionary:(NSSet* _Nullable)selectedFields;
+
 #pragma mark - static methods
 /*!
  *  @remark BaseMangedObjectModel return nil value
