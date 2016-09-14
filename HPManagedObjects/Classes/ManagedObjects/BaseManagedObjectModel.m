@@ -123,7 +123,7 @@ static const char *getPropertyType(objc_property_t property) {
 			
 			if(value == [NSNull null])
 			{
-				[self setValue:descriptor.propertyName forKey:nil];
+				[self setValue:nil forKey:descriptor.propertyName];
 				continue;
 			}
 			
