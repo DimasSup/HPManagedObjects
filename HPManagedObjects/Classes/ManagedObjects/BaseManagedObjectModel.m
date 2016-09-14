@@ -371,6 +371,7 @@ static const char *getPropertyType(objc_property_t property) {
             }
     return nestedArray;
 }
+
 -(NSDictionary *)toDictionary
 {
 	return [self toDictionary:nil];
