@@ -388,7 +388,7 @@ static const char *getPropertyType(objc_property_t property) {
 {
     Class myClass = self.class;
 	Mapping* mapping = [myClass getCachedMapping];
-	NSMutableDictionary* result = [[NSMutableDictionary alloc] initWithDictionary:self.__sourceDictionary?:@{}];
+	NSMutableDictionary* result = [[NSMutableDictionary alloc] initWithDictionary:selectedFields?self.__sourceDictionary?:@{}:nil];
 	for (MappingDescriptor* descriptor in mapping.mapings) {
 		if (!descriptor.jsonName
 #if !CHECK_MODELS
