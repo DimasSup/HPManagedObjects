@@ -417,6 +417,10 @@ static const char *getPropertyType(objc_property_t property) {
 		
 		if (!value)
 		{
+			if(selectedFields && [selectedFields containsObject:descriptor.propertyName])
+			{
+				result[descriptor.jsonName] = [NSNull null];
+			}
 			continue;
 		}
 		if([value isKindOfClass:[BaseManagedObjectModel class]])
