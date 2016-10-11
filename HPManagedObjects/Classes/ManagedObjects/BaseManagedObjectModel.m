@@ -89,142 +89,148 @@ static const char *getPropertyType(objc_property_t property) {
 {
 	@autoreleasepool {
 		
-		
-		if(!dictionary)
-			return self;
-		if([dictionary isKindOfClass:[NSNull class]])
-		{
-			return self;
-		}
-		
-		if([dictionary isKindOfClass:[NSString class]])
-		{
-			dictionary = [NSJSONSerialization JSONObjectWithData:[(NSString*)dictionary dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
-		}
-		if(![dictionary isKindOfClass:[NSDictionary class]])
-			return self;
-		
-		Class myClass = self.class;
-		
-		Mapping* mapping = [myClass getCachedMapping];
-		if(mapping.saveSource)
-			self.__sourceDictionary = dictionary;
-		for (MappingDescriptor* descriptor in mapping.mapings)
-		{
-			[myClass preparePropertyDescriptionInfo:descriptor forClass:myClass];
+		@try {
 			
-			if(!descriptor.jsonName)
-				continue;
-			
-			
-			id value = [dictionary objectForKey:descriptor.jsonName];
-			
-			// TODO:  check this logic !value
-			
-			if(!value)
+			if(!dictionary)
+				return self;
+			if([dictionary isKindOfClass:[NSNull class]])
 			{
-				continue;
+				return self;
 			}
 			
-			if(value == [NSNull null])
+			if([dictionary isKindOfClass:[NSString class]])
 			{
-				if(![descriptor.resultPropertyClass isSubclassOfClass:[NSNull class]])
-					[self setValue:nil forKey:descriptor.propertyName];
+				dictionary = [NSJSONSerialization JSONObjectWithData:[(NSString*)dictionary dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+			}
+			if(![dictionary isKindOfClass:[NSDictionary class]])
+				return self;
+			
+			Class myClass = self.class;
+			
+			Mapping* mapping = [myClass getCachedMapping];
+			if(mapping.saveSource)
+				self.__sourceDictionary = dictionary;
+			for (MappingDescriptor* descriptor in mapping.mapings)
+			{
+				[myClass preparePropertyDescriptionInfo:descriptor forClass:myClass];
 				
-				continue;
-			}
-			
-			
-			if ([descriptor.resultPropertyClass isSubclassOfClass:[NSArray class]])
-			{
-				NSMutableArray *nestedArray = [self getArray:descriptor rootDict:dictionary value:value];
-				[self setValue:nestedArray forKey:descriptor.propertyName];
-			}
-			else if(descriptor.classNameBlock)
-			{
-				NSString* className = descriptor.classNameBlock(dictionary,value);
-				BaseManagedObjectModel *nestedClass = [self getModelFromClassName:className value:value];
-				[self setValue:nestedClass forKey:descriptor.propertyName];
-			}
-			else if(descriptor.className && [descriptor.resultPropertyClassName isEqualToString:descriptor.className])
-			{
-				BaseManagedObjectModel *nestedClass = [self getModel:descriptor value:value];
-				[self setValue:nestedClass forKey:descriptor.propertyName];
-			}
-			else if(descriptor.typeSelectors)
-			{
-				BaseManagedObjectModel *nestedClass = [self getModelByType:descriptor rootDict:dictionary value:value];
-				if(nestedClass)
-					[self setValue:nestedClass forKey:descriptor.propertyName];
+				if(!descriptor.jsonName)
+					continue;
 				
-			}
-			else if([descriptor.resultPropertyClass isSubclassOfClass:[NSDictionary class]])
-			{
 				
-				NSMutableDictionary* nestedDictionary = [NSMutableDictionary new];
-				if(descriptor.canUseRoot &&(!value && ![value isKindOfClass:[NSNull class]] && (descriptor.className.length || descriptor.typeSelectors.count)))
+				id value = [dictionary objectForKey:descriptor.jsonName];
+				
+				// TODO:  check this logic !value
+				
+				if(!value)
 				{
-					value = dictionary;
+					continue;
 				}
-				else
-				if(!value || [value isKindOfClass:[NSNull class]])
+				
+				if(value == [NSNull null])
 				{
-					nestedDictionary = nil;
-					value = nil;
-				}
-				if(descriptor.asString && [value isKindOfClass:[NSString class]])
-				{
-					value = [NSJSONSerialization JSONObjectWithData:[value dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
-				}
-				for (id key in value)
-				{
-					id obj = value[key];
+					if(![descriptor.resultPropertyClass isSubclassOfClass:[NSNull class]])
+						[self setValue:nil forKey:descriptor.propertyName];
 					
-					if(descriptor.typeSelectors)
+					continue;
+				}
+				
+				
+				if ([descriptor.resultPropertyClass isSubclassOfClass:[NSArray class]])
+				{
+					NSMutableArray *nestedArray = [self getArray:descriptor rootDict:dictionary value:value];
+					[self setValue:nestedArray forKey:descriptor.propertyName];
+				}
+				else if(descriptor.classNameBlock)
+				{
+					NSString* className = descriptor.classNameBlock(dictionary,value);
+					BaseManagedObjectModel *nestedClass = [self getModelFromClassName:className value:value];
+					[self setValue:nestedClass forKey:descriptor.propertyName];
+				}
+				else if(descriptor.className && [descriptor.resultPropertyClassName isEqualToString:descriptor.className])
+				{
+					BaseManagedObjectModel *nestedClass = [self getModel:descriptor value:value];
+					[self setValue:nestedClass forKey:descriptor.propertyName];
+				}
+				else if(descriptor.typeSelectors)
+				{
+					BaseManagedObjectModel *nestedClass = [self getModelByType:descriptor rootDict:dictionary value:value];
+					if(nestedClass)
+						[self setValue:nestedClass forKey:descriptor.propertyName];
+					
+				}
+				else if([descriptor.resultPropertyClass isSubclassOfClass:[NSDictionary class]])
+				{
+					
+					NSMutableDictionary* nestedDictionary = [NSMutableDictionary new];
+					if(descriptor.canUseRoot &&(!value && ![value isKindOfClass:[NSNull class]] && (descriptor.className.length || descriptor.typeSelectors.count)))
 					{
-						BaseManagedObjectModel* nestedClass = [self getModelByType:descriptor rootDict:value value:obj];
-						if(nestedClass)
+						value = dictionary;
+					}
+					else
+						if(!value || [value isKindOfClass:[NSNull class]])
 						{
+							nestedDictionary = nil;
+							value = nil;
+						}
+					if(descriptor.asString && [value isKindOfClass:[NSString class]])
+					{
+						value = [NSJSONSerialization JSONObjectWithData:[value dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+					}
+					for (id key in value)
+					{
+						id obj = value[key];
+						
+						if(descriptor.typeSelectors)
+						{
+							BaseManagedObjectModel* nestedClass = [self getModelByType:descriptor rootDict:value value:obj];
+							if(nestedClass)
+							{
+								nestedDictionary[key] = nestedClass;
+							}
+						}
+						else if(descriptor.classNameBlock)
+						{
+							NSString* className = descriptor.classNameBlock(value,obj);
+							BaseManagedObjectModel *nestedClass = [self getModelFromClassName:className value:obj];
+							[self setValue:nestedClass forKey:descriptor.propertyName];
+						}
+						else if(descriptor.className)
+						{
+							BaseManagedObjectModel* nestedClass = [[descriptor.realClassFromName alloc] init];
+							[nestedClass updateWithDictionary:obj];
 							nestedDictionary[key] = nestedClass;
 						}
+						else
+						{
+							nestedDictionary[key] = obj;
+						}
 					}
-					else if(descriptor.classNameBlock)
+					if(nestedDictionary)
+						[self setValue:nestedDictionary forKey:descriptor.propertyName];
+				}
+				else if(descriptor.format && value)
+				{
+					NSDate *dateFromString = [myClass getDate:descriptor.format value:value];
+					if(dateFromString)
 					{
-						NSString* className = descriptor.classNameBlock(value,obj);
-						BaseManagedObjectModel *nestedClass = [self getModelFromClassName:className value:obj];
-						[self setValue:nestedClass forKey:descriptor.propertyName];
-					}
-					else if(descriptor.className)
-					{
-						BaseManagedObjectModel* nestedClass = [[descriptor.realClassFromName alloc] init];
-						[nestedClass updateWithDictionary:obj];
-						nestedDictionary[key] = nestedClass;
+						[self setValue:dateFromString forKey:descriptor.propertyName];
 					}
 					else
 					{
-						nestedDictionary[key] = obj;
+						[self setValue:[NSDate date] forKeyPath:descriptor.propertyName];
 					}
 				}
-				if(nestedDictionary)
-					[self setValue:nestedDictionary forKey:descriptor.propertyName];
-			}
-			else if(descriptor.format && value)
-			{
-				NSDate *dateFromString = [myClass getDate:descriptor.format value:value];
-				if(dateFromString)
+				else if(value)
 				{
-					[self setValue:dateFromString forKey:descriptor.propertyName];
-				}
-				else
-				{
-					[self setValue:[NSDate date] forKeyPath:descriptor.propertyName];
+					[self setValue:[descriptor convertValue:value] forKey:descriptor.propertyName];
+					
 				}
 			}
-			else if(value)
-			{
-				[self setValue:[descriptor convertValue:value] forKey:descriptor.propertyName];
-				
-			}
+		}
+		@catch(NSException* exception)
+		{
+			
 		}
 		return self;
 	}
@@ -315,36 +321,36 @@ static const char *getPropertyType(objc_property_t property) {
 	NSArray* array = value;
 	
     NSMutableArray* nestedArray = [NSMutableArray new];
-    for (id obj in array)
-    {
-        if(descriptor.typeSelectors)
-        {
-            
-            BaseManagedObjectModel* nestedClass = [self getModelByType:descriptor rootDict:rootDict value:obj];
-            if(nestedClass)
-                [nestedArray addObject:nestedClass];
-            
-            
-        }
-        else if(descriptor.classNameBlock)
-        {
-            
-            NSString* className = descriptor.classNameBlock(rootDict,obj);
-            BaseManagedObjectModel *nestedClass = [self getModelFromClassName:className value:obj];
-            [self setValue:nestedClass forKey:descriptor.propertyName];
-        }
-        else if(descriptor.className)
-        {
-            BaseManagedObjectModel* nestedClass = [[descriptor.realClassFromName alloc] init];
-            [nestedClass updateWithDictionary:obj];
-            [nestedArray addObject:nestedClass];
-        }
-        else
-        {
-            [nestedArray addObject:obj];
-        }
-    }
-    
+	if([value isKindOfClass:[NSArray class]])
+	{
+		for (id obj in array)
+		{
+			if(descriptor.typeSelectors)
+			{
+				BaseManagedObjectModel* nestedClass = [self getModelByType:descriptor rootDict:rootDict value:obj];
+				if(nestedClass)
+					[nestedArray addObject:nestedClass];
+			}
+			else if(descriptor.classNameBlock)
+			{
+				
+				NSString* className = descriptor.classNameBlock(rootDict,obj);
+				BaseManagedObjectModel *nestedClass = [self getModelFromClassName:className value:obj];
+				[self setValue:nestedClass forKey:descriptor.propertyName];
+			}
+			else if(descriptor.className)
+			{
+				BaseManagedObjectModel* nestedClass = [[descriptor.realClassFromName alloc] init];
+				[nestedClass updateWithDictionary:obj];
+				[nestedArray addObject:nestedClass];
+			}
+			else
+			{
+				[nestedArray addObject:obj];
+			}
+		}
+	}
+	
     return nestedArray;
 }
 
@@ -388,112 +394,118 @@ static const char *getPropertyType(objc_property_t property) {
 
 -(NSDictionary *)toDictionary:(NSSet* _Nullable)selectedFields
 {
-    Class myClass = self.class;
+	Class myClass = self.class;
 	Mapping* mapping = [myClass getCachedMapping];
 	NSMutableDictionary* result = [[NSMutableDictionary alloc] initWithDictionary:!selectedFields?self.__sourceDictionary?:@{}:nil];
-	for (MappingDescriptor* descriptor in mapping.mapings) {
-		if (!descriptor.jsonName
+	@try {
+		
+		for (MappingDescriptor* descriptor in mapping.mapings) {
+			if (!descriptor.jsonName
 #if !CHECK_MODELS
-			|| !descriptor.propertyName
+				|| !descriptor.propertyName
 #endif
-			)
-		{
-			continue;
-		}
-		if(selectedFields && ![selectedFields containsObject:descriptor.propertyName])
-		{
-			continue;
-		}
-		id value = nil;
+				)
+			{
+				continue;
+			}
+			if(selectedFields && ![selectedFields containsObject:descriptor.propertyName])
+			{
+				continue;
+			}
+			id value = nil;
 #if CHECK_MODELS
-		value =	[self valueForKey:descriptor.propertyName];
-#else
-		@try {
 			value =	[self valueForKey:descriptor.propertyName];
-		}
-		@catch (NSException *exception) {
-			
-		}
+#else
+			@try {
+				value =	[self valueForKey:descriptor.propertyName];
+			}
+			@catch (NSException *exception) {
+				
+			}
 #endif
-		
-		
-		if (!value)
-		{
-			if(selectedFields && [selectedFields containsObject:descriptor.propertyName])
-			{
-				result[descriptor.jsonName] = [NSNull null];
-			}
-			continue;
-		}
-		if([value isKindOfClass:[BaseManagedObjectModel class]])
-		{
-			NSDictionary* dic = [value toDictionary];
-			if(descriptor.asString){
-                NSString* serilizedProperty = [SerializeHelper toJsonString:dic prettyPrint:NO];
-                [result setObject:serilizedProperty forKey:descriptor.jsonName];
-            }
-            else{
-                [result setObject:dic forKey:descriptor.jsonName];
-            }
-        }
-        else if ([value isKindOfClass:[NSArray class]])
-        {
-            NSMutableArray* array = [NSMutableArray new];
-            
-            for (id obj in value)
-            {
-                if([obj isKindOfClass:[BaseManagedObjectModel class]])
-                {
-                    [array addObject:[obj toDictionary]];
-                }
-                else
-                {
-                    [array addObject:obj];
-                }
-            }
-            [result setObject:array forKey:descriptor.jsonName];
-        }
-		else if([value isKindOfClass:[NSDictionary class]])
-		{
-			NSMutableDictionary* dict = [NSMutableDictionary new];
-			for (id key in value)
-			{
-				id subValue = value[key];
-				if([subValue isKindOfClass:[BaseManagedObjectModel class]])
-				{
-					dict[key] = [subValue toDictionary];
-				}
-				else
-				{
-					dict[key] = subValue;
-				}
-			}
-			if(dict.count)
-			{
-				[result setObject:dict forKey:descriptor.jsonName];
-			}
-        }
-        else if([value isKindOfClass:[NSDate class]])
-        {
-            
-            NSString *stringFromDate = [myClass getDateString:descriptor.format value:value];
 			
-			if(stringFromDate)
+			
+			if (!value)
 			{
-				[result setObject:stringFromDate forKey:descriptor.jsonName];
+				if(selectedFields && [selectedFields containsObject:descriptor.propertyName])
+				{
+					result[descriptor.jsonName] = [NSNull null];
+				}
+				continue;
 			}
-        }
-        else if(value)
-		{
-			value = [descriptor convertValueBack:value];
-			if(value)
+			if([value isKindOfClass:[BaseManagedObjectModel class]])
+			{
+				NSDictionary* dic = [value toDictionary];
+				if(descriptor.asString){
+					NSString* serilizedProperty = [SerializeHelper toJsonString:dic prettyPrint:NO];
+					[result setObject:serilizedProperty forKey:descriptor.jsonName];
+				}
+				else{
+					[result setObject:dic forKey:descriptor.jsonName];
+				}
+			}
+			else if ([value isKindOfClass:[NSArray class]])
+			{
+				NSMutableArray* array = [NSMutableArray new];
+				
+				for (id obj in value)
+				{
+					if([obj isKindOfClass:[BaseManagedObjectModel class]])
+					{
+						[array addObject:[obj toDictionary]];
+					}
+					else
+					{
+						[array addObject:obj];
+					}
+				}
+				[result setObject:array forKey:descriptor.jsonName];
+			}
+			else if([value isKindOfClass:[NSDictionary class]])
+			{
+				NSMutableDictionary* dict = [NSMutableDictionary new];
+				for (id key in value)
+				{
+					id subValue = value[key];
+					if([subValue isKindOfClass:[BaseManagedObjectModel class]])
+					{
+						dict[key] = [subValue toDictionary];
+					}
+					else
+					{
+						dict[key] = subValue;
+					}
+				}
+				if(dict.count)
+				{
+					[result setObject:dict forKey:descriptor.jsonName];
+				}
+			}
+			else if([value isKindOfClass:[NSDate class]])
 			{
 				
-				[result setObject:value forKey:descriptor.jsonName];
+				NSString *stringFromDate = [myClass getDateString:descriptor.format value:value];
+				
+				if(stringFromDate)
+				{
+					[result setObject:stringFromDate forKey:descriptor.jsonName];
+				}
 			}
-        }
-    }
-    return result;
+			else if(value)
+			{
+				value = [descriptor convertValueBack:value];
+				if(value)
+				{
+					
+					[result setObject:value forKey:descriptor.jsonName];
+				}
+			}
+		}
+		
+	} @catch (NSException *exception) {
+		
+	}
+	return result;
 }
 
 -(NSString *)description
