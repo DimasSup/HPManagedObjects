@@ -16,32 +16,32 @@ static NSMutableDictionary* _BaseManagedObjectDateFormattersCache = nil;
 @implementation BaseManagedObjectModel
 +(Mapping*)getCachedMapping
 {
-    @synchronized(_BaseManagedObjectMappingsCache)
-    {
-        NSString* str =[[NSString alloc] initWithCString:class_getName(self) encoding:NSASCIIStringEncoding];
-        
-        Mapping* m = _BaseManagedObjectMappingsCache[str];
-        if(!m)
-        {
-            m = [self mapping];
-            if(m)
-                [_BaseManagedObjectMappingsCache setObject:m forKey:str];
-            else
-            {
-                NSLog(@"WTF man! Where is Mapping for %@",[self className]);
-            }
-        }
-        return m;
-    }
-    
+	@synchronized(_BaseManagedObjectMappingsCache)
+	{
+		NSString* str =[[NSString alloc] initWithCString:class_getName(self) encoding:NSASCIIStringEncoding];
+		
+		Mapping* m = _BaseManagedObjectMappingsCache[str];
+		if(!m)
+		{
+			m = [self mapping];
+			if(m)
+				[_BaseManagedObjectMappingsCache setObject:m forKey:str];
+			else
+			{
+				NSLog(@"WTF man! Where is Mapping for %@",[self className]);
+			}
+		}
+		return m;
+	}
+	
 }
 +(void)initialize
 {
-    [super initialize];
-    if(!_BaseManagedObjectMappingsCache)
-    {
-        _BaseManagedObjectMappingsCache = [NSMutableDictionary new];
-    }
+	[super initialize];
+	if(!_BaseManagedObjectMappingsCache)
+	{
+		_BaseManagedObjectMappingsCache = [NSMutableDictionary new];
+	}
 	if(!_BaseManagedObjectDateFormattersCache)
 	{
 		_BaseManagedObjectDateFormattersCache = [NSMutableDictionary new];
@@ -59,30 +59,30 @@ static const char *getPropertyType(objc_property_t property) {
 	//    printf("attributes=%s\n", attributes);
 	char buffer[1 + strlen(attributes)];
 	strcpy(buffer, attributes);
-    char *state = buffer, *attribute;
-    while ((attribute = strsep(&state, ",")) != NULL) {
-        if (attribute[0] == 'T' && attribute[1] != '@') {
-            // it's a C primitive type:
-            /*
+	char *state = buffer, *attribute;
+	while ((attribute = strsep(&state, ",")) != NULL) {
+		if (attribute[0] == 'T' && attribute[1] != '@') {
+			// it's a C primitive type:
+			/*
 			 if you want a list of what will be returned for these primitives, search online for
 			 "objective-c" "Property Attribute Description Examples"
 			 apple docs list plenty of examples of what you get for int "i", long "l", unsigned "I", struct, etc.
 			 */
-            return (const char *)[[NSData dataWithBytes:(attribute + 1) length:strlen(attribute) - 1] bytes];
-        }
-        else if (attribute[0] == 'T' && attribute[1] == '@' && strlen(attribute) == 2) {
-            // it's an ObjC id type:
-            return "id";
-        }
-        else if (attribute[0] == 'T' && attribute[1] == '@') {
-            // it's another ObjC object type:
+			return (const char *)[[NSData dataWithBytes:(attribute + 1) length:strlen(attribute) - 1] bytes];
+		}
+		else if (attribute[0] == 'T' && attribute[1] == '@' && strlen(attribute) == 2) {
+			// it's an ObjC id type:
+			return "id";
+		}
+		else if (attribute[0] == 'T' && attribute[1] == '@') {
+			// it's another ObjC object type:
 			
 			NSString* string = [NSString stringWithCString:attribute encoding:NSASCIIStringEncoding];
 			NSString* sString = [string substringWithRange:NSMakeRange(3, string.length - 4)];
 			return [sString cStringUsingEncoding:NSASCIIStringEncoding];
-        }
-    }
-    return "";
+		}
+	}
+	return "";
 }
 
 - (id)updateWithDictionary:(id)dictionary
@@ -122,7 +122,7 @@ static const char *getPropertyType(objc_property_t property) {
 				
 				// TODO:  check this logic !value
 				
-				if(!value)
+				if(!value && descriptor.canUseRoot == NO)
 				{
 					continue;
 				}
@@ -244,9 +244,9 @@ static const char *getPropertyType(objc_property_t property) {
 }
 
 - (BaseManagedObjectModel *)getModel:(MappingDescriptor *)descriptor value:(id)value {
-    BaseManagedObjectModel* nestedClass = [[descriptor.realClassFromName alloc] init];
-    [nestedClass updateWithDictionary:value];
-    return nestedClass;
+	BaseManagedObjectModel* nestedClass = [[descriptor.realClassFromName alloc] init];
+	[nestedClass updateWithDictionary:value];
+	return nestedClass;
 }
 
 - (BaseManagedObjectModel *)getModelByType:(MappingDescriptor *)descriptor rootDict:(id)rootDict value:(id)value {
@@ -265,7 +265,7 @@ static const char *getPropertyType(objc_property_t property) {
 			if([value isKindOfClass:[NSString class]])
 			{
 				value = [NSJSONSerialization JSONObjectWithData:[(NSString*)value dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
-
+				
 			}
 			checkmark = value[selector.key];
 		}
@@ -301,18 +301,18 @@ static const char *getPropertyType(objc_property_t property) {
 
 
 - (BaseManagedObjectModel *)getModelByType:(MappingDescriptor *)descriptor value:(id)value {
-    BaseManagedObjectModel* nestedClass = nil;
-    NSDictionary* nesterdJson = value;
-    for (TypeSelector* selector in descriptor.typeSelectors) {
-                if([nesterdJson objectForKey:selector.key])
-                {
-                    nestedClass = [[NSClassFromString(selector.className) alloc] init];
-                    [nestedClass updateWithDictionary:nesterdJson];
-
-                    break;
-                }
-            }
-    return nestedClass;
+	BaseManagedObjectModel* nestedClass = nil;
+	NSDictionary* nesterdJson = value;
+	for (TypeSelector* selector in descriptor.typeSelectors) {
+		if([nesterdJson objectForKey:selector.key])
+		{
+			nestedClass = [[NSClassFromString(selector.className) alloc] init];
+			[nestedClass updateWithDictionary:nesterdJson];
+			
+			break;
+		}
+	}
+	return nestedClass;
 }
 
 
@@ -320,7 +320,7 @@ static const char *getPropertyType(objc_property_t property) {
 - (NSMutableArray *)getArray:(MappingDescriptor *)descriptor rootDict:(NSDictionary*)rootDict value:(id)value {
 	NSArray* array = value;
 	
-    NSMutableArray* nestedArray = [NSMutableArray new];
+	NSMutableArray* nestedArray = [NSMutableArray new];
 	if([value isKindOfClass:[NSArray class]])
 	{
 		for (id obj in array)
@@ -351,7 +351,7 @@ static const char *getPropertyType(objc_property_t property) {
 		}
 	}
 	
-    return nestedArray;
+	return nestedArray;
 }
 
 - (NSMutableArray *)getArray:(MappingDescriptor *)descriptor value:(id)value {
@@ -383,8 +383,8 @@ static const char *getPropertyType(objc_property_t property) {
 		{
 			[nestedArray addObject:obj];
 		}
-            }
-    return nestedArray;
+	}
+	return nestedArray;
 }
 
 -(NSDictionary *)toDictionary
@@ -478,7 +478,13 @@ static const char *getPropertyType(objc_property_t property) {
 				}
 				if(dict.count)
 				{
-					[result setObject:dict forKey:descriptor.jsonName];
+					if(descriptor.canUseRoot)
+					{
+						[result addEntriesFromDictionary:descriptor];
+					}
+					else{
+						[result setObject:dict forKey:descriptor.jsonName];
+					}
 				}
 			}
 			else if([value isKindOfClass:[NSDate class]])
@@ -510,14 +516,14 @@ static const char *getPropertyType(objc_property_t property) {
 
 -(NSString *)description
 {
-    NSString* resString = [SerializeHelper toJsonString:[self toDictionary] prettyPrint:YES];
-    return resString;
+	NSString* resString = [SerializeHelper toJsonString:[self toDictionary] prettyPrint:YES];
+	return resString;
 }
 
 #pragma mark -
 +(Mapping*)mapping
 {
-    return [[Mapping alloc] init:nil idName:nil idPropertyName:nil tableName:nil];
+	return [[Mapping alloc] init:nil idName:nil idPropertyName:nil tableName:nil];
 }
 
 /*
@@ -526,108 +532,108 @@ static const char *getPropertyType(objc_property_t property) {
 
 +(NSString *)generatDBTableCreateString
 {
-    
-    Class myClass = self.class;
-    
-    Mapping* mapping = [myClass getCachedMapping];
-    NSMutableString* requestString = [NSMutableString new];
-    
-    if(mapping && mapping.tableName.length && mapping.idName.length && mapping.idPropertyName.length)
-    {
-        Class idKeyClass = [self getClassForPrperty:mapping.idPropertyName forClass:myClass outClassName:nil];
-        NSArray* types = [[NSArray alloc] initWithObjects:@"INTEGER",@"TEXT",@"DATETIME", nil];
-        NSString* tempString = [[NSString alloc] initWithFormat:@"create table \"%@\" ( \"%@\" %@ PRIMARY KEY NOT NULL%%@);",mapping.tableName,mapping.idName,types[[self databaseClassType:idKeyClass]]];
-
-        NSMutableString* other = [NSMutableString new];
-        
-        for (MappingDescriptor* description in mapping.mapings)
-        {
-            if(!description.columnName.length)
-                continue;
-            Class class = [self getClassForPrperty:description.propertyName forClass:myClass outClassName:nil];
-            [other appendFormat:@", \"%@\" %@ %@ %@",description.columnName,types[[self databaseClassType:class]],description.required?@"NOT NULL":@"",description.defaultValue?[NSString stringWithFormat:@"DEFAULT ('%@')", description.defaultValue]:@""];
-            
-            
-        }
-
-        [requestString appendFormat:tempString,other];
-    }
-    
-    return requestString;
+	
+	Class myClass = self.class;
+	
+	Mapping* mapping = [myClass getCachedMapping];
+	NSMutableString* requestString = [NSMutableString new];
+	
+	if(mapping && mapping.tableName.length && mapping.idName.length && mapping.idPropertyName.length)
+	{
+		Class idKeyClass = [self getClassForPrperty:mapping.idPropertyName forClass:myClass outClassName:nil];
+		NSArray* types = [[NSArray alloc] initWithObjects:@"INTEGER",@"TEXT",@"DATETIME", nil];
+		NSString* tempString = [[NSString alloc] initWithFormat:@"create table \"%@\" ( \"%@\" %@ PRIMARY KEY NOT NULL%%@);",mapping.tableName,mapping.idName,types[[self databaseClassType:idKeyClass]]];
+		
+		NSMutableString* other = [NSMutableString new];
+		
+		for (MappingDescriptor* description in mapping.mapings)
+		{
+			if(!description.columnName.length)
+				continue;
+			Class class = [self getClassForPrperty:description.propertyName forClass:myClass outClassName:nil];
+			[other appendFormat:@", \"%@\" %@ %@ %@",description.columnName,types[[self databaseClassType:class]],description.required?@"NOT NULL":@"",description.defaultValue?[NSString stringWithFormat:@"DEFAULT ('%@')", description.defaultValue]:@""];
+			
+			
+		}
+		
+		[requestString appendFormat:tempString,other];
+	}
+	
+	return requestString;
 }
 
 +(void)preparePropertyDescriptionInfo:(MappingDescriptor*)description forClass:(Class)class
 {
-    if(!description.resultPropertyClass)
-    {
-        objc_property_t theProperty = class_getProperty(class, [description.propertyName UTF8String]);
-        const char * propertyType = getPropertyType(theProperty);
-        NSString* className =[NSString stringWithCString:propertyType encoding:NSASCIIStringEncoding];
-        if(className.length)
-        {
-            description.resultPropertyClassName = className;
-            description.resultPropertyClass = NSClassFromString(className)?:[NSNull class];
-        }
-    }
-
+	if(!description.resultPropertyClass)
+	{
+		objc_property_t theProperty = class_getProperty(class, [description.propertyName UTF8String]);
+		const char * propertyType = getPropertyType(theProperty);
+		NSString* className =[NSString stringWithCString:propertyType encoding:NSASCIIStringEncoding];
+		if(className.length)
+		{
+			description.resultPropertyClassName = className;
+			description.resultPropertyClass = NSClassFromString(className)?:[NSNull class];
+		}
+	}
+	
 }
 
 +(Class)getClassForPrperty:(NSString*)propertyName forClass:(Class)class outClassName:(NSString**)outClassName
 {
-    objc_property_t theProperty = class_getProperty(class, [propertyName UTF8String]);
-    const char * propertyType = getPropertyType(theProperty);
-    NSString* className =[NSString stringWithCString:propertyType encoding:NSASCIIStringEncoding];
-    if(outClassName!=nil)
-    {
-        *outClassName = className;
-    }
-    return NSClassFromString(className);
+	objc_property_t theProperty = class_getProperty(class, [propertyName UTF8String]);
+	const char * propertyType = getPropertyType(theProperty);
+	NSString* className =[NSString stringWithCString:propertyType encoding:NSASCIIStringEncoding];
+	if(outClassName!=nil)
+	{
+		*outClassName = className;
+	}
+	return NSClassFromString(className);
 }
 +(int)databaseClassType:(Class)class
 {
-    int classType = 0;//0 - integer (NUMERIC),1 - TEXT,2 - DATETIME
-    if([class isSubclassOfClass:[NSString class]]||
-       [class isSubclassOfClass:[BaseManagedObjectModel class]]||
-       [class isSubclassOfClass:[NSData class]]||
-       [class isSubclassOfClass:[NSArray class]]||
-       [class isSubclassOfClass:[NSDictionary class]])
-    {
-        classType = 1;
-    }
-    else if([class isSubclassOfClass:[NSDate class]])
-    {
-        classType = 2;
-    }
-    return classType;
-   
+	int classType = 0;//0 - integer (NUMERIC),1 - TEXT,2 - DATETIME
+	if([class isSubclassOfClass:[NSString class]]||
+	   [class isSubclassOfClass:[BaseManagedObjectModel class]]||
+	   [class isSubclassOfClass:[NSData class]]||
+	   [class isSubclassOfClass:[NSArray class]]||
+	   [class isSubclassOfClass:[NSDictionary class]])
+	{
+		classType = 1;
+	}
+	else if([class isSubclassOfClass:[NSDate class]])
+	{
+		classType = 2;
+	}
+	return classType;
+	
 }
 
 +(NSDate *)getDate:(NSString*)format value:(id)value
 {
-    return [[self dateFormatterForFormat:format] dateFromString:value];
+	return [[self dateFormatterForFormat:format] dateFromString:value];
 }
 +(NSString*)getDateString:(NSString*)format value:(id)value
 {
-    return [[self dateFormatterForFormat:format] stringFromDate:value];
+	return [[self dateFormatterForFormat:format] stringFromDate:value];
 }
 +(NSDateFormatter*)dateFormatterForFormat:(NSString*)format
 {
-    if(!format)
-    {
-        format = @"";
-    }
-    NSDateFormatter* dateFormatter = _BaseManagedObjectDateFormattersCache[format];
-    if(!dateFormatter)
-    {
-        dateFormatter = [[NSDateFormatter alloc] init];
+	if(!format)
+	{
+		format = @"";
+	}
+	NSDateFormatter* dateFormatter = _BaseManagedObjectDateFormattersCache[format];
+	if(!dateFormatter)
+	{
+		dateFormatter = [[NSDateFormatter alloc] init];
 		dateFormatter.calendar = [[NSCalendar alloc ] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
 		dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-        if(format.length)
-            [dateFormatter setDateFormat:format];
-        _BaseManagedObjectDateFormattersCache[format] = dateFormatter;
-        
-    }
-    return dateFormatter;
+		if(format.length)
+			[dateFormatter setDateFormat:format];
+		_BaseManagedObjectDateFormattersCache[format] = dateFormatter;
+		
+	}
+	return dateFormatter;
 }
 
 #pragma mark -
