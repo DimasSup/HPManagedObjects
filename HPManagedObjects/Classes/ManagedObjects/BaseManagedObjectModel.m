@@ -480,7 +480,7 @@ static const char *getPropertyType(objc_property_t property) {
 				{
 					if(descriptor.canUseRoot)
 					{
-						[result addEntriesFromDictionary:descriptor];
+						[result addEntriesFromDictionary:dict];
 					}
 					else{
 						[result setObject:dict forKey:descriptor.jsonName];
