@@ -610,11 +610,16 @@ static const char *getPropertyType(objc_property_t property) {
 
 +(NSDate *)getDate:(NSString*)format value:(id)value
 {
-	return [[self dateFormatterForFormat:format] dateFromString:value];
+	NSDateFormatter* dateFormatter = [self dateFormatterForFormat:format] ;
+	
+	return [dateFormatter dateFromString:value];
 }
 +(NSString*)getDateString:(NSString*)format value:(id)value
 {
-	return [[self dateFormatterForFormat:format] stringFromDate:value];
+	
+	NSDateFormatter* dateFormatter = [self dateFormatterForFormat:format] ;
+	
+	return [dateFormatter stringFromDate:value];
 }
 +(NSDateFormatter*)dateFormatterForFormat:(NSString*)format
 {
@@ -627,6 +632,7 @@ static const char *getPropertyType(objc_property_t property) {
 	{
 		dateFormatter = [[NSDateFormatter alloc] init];
 		dateFormatter.calendar = [[NSCalendar alloc ] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+		dateFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
 		dateFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
 		if(format.length)
 			[dateFormatter setDateFormat:format];
