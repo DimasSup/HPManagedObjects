@@ -3,6 +3,8 @@ PODS:
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
   - HPManagedObjects (1.0.0):
+    - HPManagedObjects/FMDB (= 1.0.0)
+  - HPManagedObjects/FMDB (1.0.0):
     - FMDB
 
 DEPENDENCIES:
@@ -14,7 +16,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
-  HPManagedObjects: 196da640f23a8599ab751c8c46bd3c2d91fb2ea3
+  HPManagedObjects: 9b57b1a90b1a0af0c8e575e6a23e8df29129647a
 
 PODFILE CHECKSUM: a0f9294bc267f6b6623bb326a931602d798bc478
 
