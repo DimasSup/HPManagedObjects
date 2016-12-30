@@ -1,19 +1,19 @@
 {
   "name": "HPManagedObjects",
-  "version": "0.1.6",
+  "version": "1.0.0",
   "summary": "Lib with BaseManagedObjectModel that allow parse json and database",
   "description": "TODO: Add long description of the pod here.",
-  "homepage": "http://hellopal.com",
+  "homepage": "https://github.com/DimasSup",
   "license": {
-    "type": "MIT",
+    "type": "GPL-3.0",
     "file": "LICENSE"
   },
   "authors": {
     "DimasSup": "dima.teleban@gmail.com"
   },
   "source": {
-    "git": "https://xp-dev.com/git/HPManagedObjects",
-    "tag": "v0.1.6"
+    "git": "https://github.com/DimasSup/HPManagedObjects.git",
+    "tag": "v1.0.0"
   },
   "platforms": {
     "ios": "8.0"
