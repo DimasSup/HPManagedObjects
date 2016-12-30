@@ -2,6 +2,7 @@
 #import <UIKit/UIKit.h>
 #endif
 
+#import "BaseManagedObjectModel+FMDB.h"
 #import "Generic.h"
 #import "HPDelegatesContainer.h"
 #import "Macroses.h"
@@ -13,7 +14,6 @@
 #import "MappingDescriptor.h"
 #import "SerializeHelper.h"
 #import "TypeSelector.h"
-#import "BaseManagedObjectModel+FMDB.h"
 
 FOUNDATION_EXPORT double HPManagedObjectsVersionNumber;
 FOUNDATION_EXPORT const unsigned char HPManagedObjectsVersionString[];

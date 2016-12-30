@@ -18,14 +18,20 @@
   "platforms": {
     "ios": "8.0"
   },
-  "source_files": "HPManagedObjects/Classes/{Main,HelpClasses}/**/*",
-  "public_header_files": "HPManagedObjects/Classes/{Main,HelpClasses}/**/*.h",
   "subspecs": [
+    {
+      "name": "Main",
+      "source_files": "HPManagedObjects/Classes/{Main,HelpClasses}/**/*",
+      "public_header_files": "HPManagedObjects/Classes/{Main,HelpClasses}/**/*.h"
+    },
     {
       "name": "FMDB",
       "source_files": "HPManagedObjects/Classes/FMDBSupport/**/*",
       "public_header_files": "HPManagedObjects/Classes/FMDBSupport/**/*.h",
       "dependencies": {
+        "HPManagedObjects/Main": [
+
+        ],
         "FMDB": [
 
         ]
