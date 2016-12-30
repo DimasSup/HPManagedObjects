@@ -36,12 +36,12 @@ TODO: Add long description of the pod here.
   # s.resource_bundles = {
   #   'HPManagedObjects' => ['HPManagedObjects/Assets/*.png']
   # }
- spec.subspec 'FMDB' do |fmdb|
-  fmdb.source_files   = 'HPManagedObjects/Classes/FMDBSupport/**/*'
+  s.subspec 'FMDB' do |fmdb|
+   fmdb.source_files   = 'HPManagedObjects/Classes/FMDBSupport/**/*'
 
-  fmdb.public_header_files = 'HPManagedObjects/Classes/FMDBSupport/**/*.h'
-  fmdb.dependency 'FMDB'
- end
+   fmdb.public_header_files = 'HPManagedObjects/Classes/FMDBSupport/**/*.h'
+   fmdb.dependency 'FMDB'
+  end
 
 
 end
