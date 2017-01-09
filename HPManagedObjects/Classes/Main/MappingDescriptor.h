@@ -9,58 +9,59 @@
 #import "TypeSelector.h"
 
 
-typedef id(^MappingDescriptorConverter) (id value);
-typedef NSString*(^MappingDescriptionClassNameByParametersBlock) (id rootDictionary, id value);
+typedef  id _Nullable(^MappingDescriptorConverter) ( id _Nullable value);
+typedef NSString* _Nullable (^MappingDescriptionClassNameByParametersBlock) ( id _Nullable rootDictionary, id _Nullable value);
 @protocol MappingDescriptorConverterProtocol <NSObject>
 
 /**
 */
--(id)convert:(id)value;
+-(id _Nullable)convert:(id _Nullable)value;
 /**
 */
--(id)convertBack:(id)value;
+-(id _Nullable)convertBack:(id _Nullable)value;
 
 @end
 @interface MappingDescriptor : NSObject
-@property(nonatomic,strong)Class resultPropertyClass;
-@property(nonatomic,strong)NSString* resultPropertyClassName;
--(id)init:(NSString *)propertyName jsonName:(NSString *)jsonName typeSelectors:(NSArray *)typeSelectors;
--(id)init:(NSString *)propertyName jsonName:(NSString *)jsonName className:(NSString *)className;
--(id)init:(NSString *)propertyName jsonName:(NSString *)jsonName;
+@property(nonatomic,strong,nullable)Class resultPropertyClass;
+@property(nonatomic,strong,nullable)NSString* resultPropertyClassName;
 
-@property (nonatomic, strong) NSString *propertyName;
-@property (nonatomic, strong) NSString *jsonName;
-@property (nonatomic, strong) NSString *className;
-@property (nonatomic, readonly) Class realClassFromName;
+-(nullable id)init:(nonnull NSString * )propertyName jsonName:(nullable NSString *)jsonName typeSelectors:(nullable NSArray<TypeSelector*> *)typeSelectors;
+-(nullable id)init:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName className:(nullable NSString *)className;
+-(nullable id)init:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName;
+
+@property (nonatomic, strong,nonnull) NSString *propertyName;
+@property (nonatomic, strong,nullable ) NSString *jsonName;
+@property (nonatomic, strong,nullable ) NSString *className;
+@property (nonatomic, readonly,nullable) Class realClassFromName;
 @property(nonatomic,assign)BOOL canUseRoot;
-@property (nonatomic, strong) NSArray *typeSelectors;
-@property (nonatomic, strong) NSString *columnName;
-@property (nonatomic, strong) NSString *format;
+@property (nonatomic, strong,nullable) NSArray<TypeSelector*> *typeSelectors;
+@property (nonatomic, strong,nullable) NSString *columnName;
+@property (nonatomic, strong,nullable) NSString *format;
 @property (nonatomic) BOOL asString;
-@property (nonatomic, copy) MappingDescriptorConverter convert;
-@property (nonatomic, copy) MappingDescriptorConverter convertBack;
-@property (nonatomic, strong) id<MappingDescriptorConverterProtocol> converter;
+@property (nonatomic, copy,nullable) MappingDescriptorConverter convert;
+@property (nonatomic, copy,nullable) MappingDescriptorConverter convertBack;
+@property (nonatomic, strong,nullable) id<MappingDescriptorConverterProtocol> converter;
 
-@property (nonatomic,copy) MappingDescriptionClassNameByParametersBlock classNameBlock;
+@property (nonatomic,copy,nullable) MappingDescriptionClassNameByParametersBlock classNameBlock;
 
 @property (nonatomic,assign)BOOL ignoreNullOrEmptyZero;
 
 @property (nonatomic) BOOL required;
-@property (nonatomic, strong)id defaultValue;
+@property (nonatomic, strong,nullable)id defaultValue;
 
--(id)convertValue:(id)value;
--(id)convertValueBack:(id)value;
+-(nullable id)convertValue:(nullable id)value;
+-(nullable id)convertValueBack:(nullable id)value;
 
-+(id)descriptorBy:(NSString *)propertyName jsonName:(NSString *)jsonName className:(NSString *)className;
-+(id)descriptorBy:(NSString *)propertyName jsonName:(NSString *)jsonName columnName:(NSString *)columnName classNameBlock:(MappingDescriptionClassNameByParametersBlock)classNameBlock;
-+(id)descriptorBy:(NSString *)propertyName jsonName:(NSString *)jsonName className:(NSString *)className columnName:(NSString *)columnName asString:(BOOL)asString;
-+(id)descriptorBy:(NSString *)propertyName jsonName:(NSString *)jsonName className:(NSString *)className columnName:(NSString *)columnName asString:(BOOL)asString convert:(MappingDescriptorConverter)convert convertBack:(MappingDescriptorConverter)convertBack;
-+(id)descriptorBy:(NSString *)propertyName jsonName:(NSString *)jsonName className:(NSString *)className columnName:(NSString *)columnName asString:(BOOL)asString converter:(id<MappingDescriptorConverterProtocol>)converter;
++(nonnull id)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName className:(nullable NSString *)className;
++(nonnull id)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName columnName:(nullable NSString *)columnName classNameBlock:(nullable MappingDescriptionClassNameByParametersBlock)classNameBlock;
++(nonnull id)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName className:(nullable NSString *)className columnName:(nullable NSString *)columnName asString:(BOOL)asString;
++(nonnull id)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName className:(nullable NSString *)className columnName:(nullable NSString *)columnName asString:(BOOL)asString convert:(nullable MappingDescriptorConverter)convert convertBack:(nullable MappingDescriptorConverter)convertBack;
++(nonnull id)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName className:(nullable NSString *)className columnName:(nullable NSString *)columnName asString:(BOOL)asString converter:(nullable id<MappingDescriptorConverterProtocol>)converter;
 
-+(id)descriptorBy:(NSString *)propertyName jsonName:(NSString *)jsonName typeSelectors:(NSArray *)typeSelectors;
-+(id)descriptorBy:(NSString *)propertyName jsonName:(NSString *)jsonName;
-+(id)descriptorBy:(NSString *)propertyName jsonName:(NSString *)jsonName ignoreEmptyOrZeroValue:(BOOL)ignoreEmptyOrZero;
-+(id)descriptorBy:(NSString *)propertyName;
-+(id)descriptorBy:(NSString *)propertyName jsonName:(NSString *)jsonName columnName:(NSString *)columnName;
-+(id)descriptorBy:(NSString *)propertyName jsonName:(NSString *)jsonName columnName:(NSString *)columnName format:(NSString *)format;
++(nonnull id)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName typeSelectors:(nullable NSArray<TypeSelector*> *)typeSelectors;
++(nonnull id)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName;
++(nonnull id)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName ignoreEmptyOrZeroValue:(BOOL)ignoreEmptyOrZero;
++(nonnull id)descriptorBy:(nonnull NSString *)propertyName;
++(nonnull id)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName columnName:(nullable NSString *)columnName;
++(nonnull id)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName columnName:(nullable NSString *)columnName format:(nullable NSString *)format;
 @end

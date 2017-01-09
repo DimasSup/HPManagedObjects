@@ -21,7 +21,7 @@
 /*!
  *  @brief  Source json dictionary if <i>saveSource</i> == <b>YES</b>
  */
-@property(nonatomic,copy)NSDictionary* __sourceDictionary;
+@property(nonatomic,copy,nullable)NSDictionary* __sourceDictionary;
 
 
 /*!
@@ -31,12 +31,12 @@
  *
  *  @return always return <i>itself</i>
  */
-- (id) updateWithDictionary:(NSDictionary*)dictionary;
+- (nullable id) updateWithDictionary:(nullable NSDictionary*)dictionary;
 
 /*!
  *  @brief  String representation of instance in jsone format
  */
--(NSString *)description;
+-(nonnull NSString *)description;
 
 
 /*!
@@ -44,13 +44,13 @@
  *
  *  @return JSON dictionary
  */
--(NSDictionary *)toDictionary;
+-(nullable NSDictionary *)toDictionary;
 
 /*!
  * @brief Serialize selected fields from instance to JSON Dictrionary
  * @return JSON dictionary
  */
--(NSDictionary *)toDictionary:(NSSet* _Nullable)selectedFields;
+-(nullable NSDictionary *)toDictionary:(NSSet* _Nullable)selectedFields;
 
 #pragma mark - static methods
 /*!
@@ -58,16 +58,16 @@
  *
  *  @return Mapping instance which containt fields which should serialized
  */
-+(Mapping*)mapping;
-+(Mapping*)getCachedMapping;
++(nonnull Mapping*)mapping;
++(nonnull Mapping*)getCachedMapping;
 /*!
  *  @brief  If you need create SQLite table for model -  call this.
  *  @remark BaseManagedObjectModel.mapping should have not empty <i>tableName</i>, <i>idName</i>, <i>idPropertyName</i> 
  *  @return string with strings which you can insert in to update request to FBDatabase
  */
-+(NSString*)generatDBTableCreateString;
++(nonnull NSString*)generatDBTableCreateString;
 
-+(NSDate *)getDate:(NSString*)format value:(id)value;
-+(NSString*)getDateString:(NSString*)format value:(id)value;
-+(NSDateFormatter*)dateFormatterForFormat:(NSString*)format;
++(nullable NSDate *)getDate:(nullable  NSString*)format value:(nonnull id)value;
++(nullable NSString*)getDateString:(nullable NSString*)format value:(nonnull id)value;
++(nonnull NSDateFormatter*)dateFormatterForFormat:(nullable NSString*)format;
 @end
