@@ -21,6 +21,8 @@
 		37F097E2269EF1BD238AD7449D796445 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = ED48C0E1AA39302CCDD55032B7544B36 /* FMDatabase.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		3E43906B70EB01C06F3AE17008B853B9 /* FMResultSet.h in Headers */ = {isa = PBXBuildFile; fileRef = F1F546D17BEE96A3AC80F5733BACB23C /* FMResultSet.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		42C7253D21D0AAEA2FF809EB55A29E83 /* BaseManagedObjectModel+FMDB.m in Sources */ = {isa = PBXBuildFile; fileRef = 45ECBB287822534F6C5D30A6BE83FE48 /* BaseManagedObjectModel+FMDB.m */; };
+		4A49FF4B1E2C2E1A003F6835 /* DatabaseHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 4A49FF491E2C2E1A003F6835 /* DatabaseHelper.h */; };
+		4A49FF4C1E2C2E1A003F6835 /* DatabaseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A49FF4A1E2C2E1A003F6835 /* DatabaseHelper.m */; };
 		4FA02A05C36A4990C8D9FAF5814AEC0B /* SerializeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC22A5DE152F8E0F9DC61C94A1EDF33 /* SerializeHelper.m */; };
 		56FE0A7C5398D93681DC99BC12F314EA /* BaseManagedObjectModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 4539157834286DFF95A6D316466BDF43 /* BaseManagedObjectModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		61B5410DA10028FC404A33CEB0DD675B /* NSObject+CallInstanceMethod.h in Headers */ = {isa = PBXBuildFile; fileRef = 5489F450513C9EEBCA028DDE18EC7E69 /* NSObject+CallInstanceMethod.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -99,6 +101,8 @@
 		4539157834286DFF95A6D316466BDF43 /* BaseManagedObjectModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BaseManagedObjectModel.h; sourceTree = "<group>"; };
 		45ECBB287822534F6C5D30A6BE83FE48 /* BaseManagedObjectModel+FMDB.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BaseManagedObjectModel+FMDB.m"; sourceTree = "<group>"; };
 		468BE18D0B95807C886E62E69D3BBA9A /* SerializeHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SerializeHelper.h; sourceTree = "<group>"; };
+		4A49FF491E2C2E1A003F6835 /* DatabaseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseHelper.h; sourceTree = "<group>"; };
+		4A49FF4A1E2C2E1A003F6835 /* DatabaseHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseHelper.m; sourceTree = "<group>"; };
 		4B97A597AFE8B5A90EDFF8560393C46B /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseAdditions.m; path = src/fmdb/FMDatabaseAdditions.m; sourceTree = "<group>"; };
 		4D062485DC2386385E4289AC567CD635 /* HPManagedObjects.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = HPManagedObjects.modulemap; sourceTree = "<group>"; };
 		53830AA89F6231F9785C61EE3AE46BFB /* FMDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FMDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -345,6 +349,8 @@
 		943F4150FE68D3894FC90FB74E9FB2DD /* FMDBSupport */ = {
 			isa = PBXGroup;
 			children = (
+				4A49FF491E2C2E1A003F6835 /* DatabaseHelper.h */,
+				4A49FF4A1E2C2E1A003F6835 /* DatabaseHelper.m */,
 				0E1B8A90B5425CF33826655E1006B267 /* BaseManagedObjectModel+FMDB.h */,
 				45ECBB287822534F6C5D30A6BE83FE48 /* BaseManagedObjectModel+FMDB.m */,
 			);
@@ -491,6 +497,7 @@
 				66DFAE8ECC4DF9B1D94B171FCCEA979A /* MappingDescriptor.h in Headers */,
 				61B5410DA10028FC404A33CEB0DD675B /* NSObject+CallInstanceMethod.h in Headers */,
 				B8063DABAFF77B130C1C6C24ECC1C046 /* NSObject+ClassName.h in Headers */,
+				4A49FF4B1E2C2E1A003F6835 /* DatabaseHelper.h in Headers */,
 				3396D6CCD4F98FF5969423AE4662A500 /* SerializeHelper.h in Headers */,
 				890073F4807D96BBECCC35664C921409 /* TypeSelector.h in Headers */,
 			);
@@ -620,6 +627,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A49FF4C1E2C2E1A003F6835 /* DatabaseHelper.m in Sources */,
 				42C7253D21D0AAEA2FF809EB55A29E83 /* BaseManagedObjectModel+FMDB.m in Sources */,
 				25EE596940C8ECBE1E9C72C9280B9BB1 /* BaseManagedObjectModel.m in Sources */,
 				221A15D0FEC868B36DF27FF75BFDEDC5 /* Generic.m in Sources */,
