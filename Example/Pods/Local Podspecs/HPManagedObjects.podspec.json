@@ -1,6 +1,6 @@
 {
   "name": "HPManagedObjects",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "summary": "Lib with BaseManagedObjectModel that allow parse json and database",
   "description": "TODO: Add long description of the pod here.",
   "homepage": "https://github.com/DimasSup",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/DimasSup/HPManagedObjects.git",
-    "tag": "v1.0.0"
+    "tag": "v1.0.4"
   },
   "platforms": {
     "ios": "8.0"

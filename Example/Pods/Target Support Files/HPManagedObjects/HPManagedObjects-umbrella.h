@@ -3,6 +3,7 @@
 #endif
 
 #import "BaseManagedObjectModel+FMDB.h"
+#import "DatabaseHelper.h"
 #import "Generic.h"
 #import "HPDelegatesContainer.h"
 #import "Macroses.h"

@@ -13,12 +13,15 @@
 
 @interface DatabaseHelper : NSObject
 
+
 +(NSArray*)executeSelect:(NSString*)type db:(FMDatabase*)db where:(NSString*)where;
 +(void)executeUpdate:(BaseManagedObjectModel*)model db:(FMDatabase*)db where:(NSString*)where;
 +(void)executeUpdate:(BaseManagedObjectModel*)model db:(FMDatabase*)db;
 +(NSInteger)executeInsert:(BaseManagedObjectModel*)model db:(FMDatabase*)db;
++(NSInteger)executeInsert:(BaseManagedObjectModel*)model db:(FMDatabase*)db forced:(BOOL)forced;
 +(void)executeDelete:(NSInteger)entityId type:(NSString*)type db:(FMDatabase*)db;
 +(void)executeInsertArray:(NSArray*)models db:(FMDatabase*)db;
++(void)executeInsertArray:(NSArray*)models db:(FMDatabase*)db forced:(BOOL)forced;
 +(void)executeDeleteType:(NSString*)type condition:(NSString*)condition db:(FMDatabase*)db;
 
 @end
