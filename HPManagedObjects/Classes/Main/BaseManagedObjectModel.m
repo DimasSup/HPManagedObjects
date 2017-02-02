@@ -85,7 +85,7 @@ static const char *getPropertyType(objc_property_t property) {
 	return "";
 }
 
-- (id)updateWithDictionary:(id)dictionary
+- (instancetype)updateWithDictionary:(id)dictionary
 {
 	@autoreleasepool {
 		

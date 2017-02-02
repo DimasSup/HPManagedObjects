@@ -9,7 +9,7 @@
 #import "BaseManagedObjectModel+FMDB.h"
 #import "BaseManagedObjectModel_Private.h"
 @implementation BaseManagedObjectModel (FMDB)
--(void)updateFromDbSet:(FMResultSet*)resultSet
+-(instancetype)updateFromDbSet:(FMResultSet*)resultSet
 {
 	@autoreleasepool {
 		
@@ -94,6 +94,7 @@
 			}
 			
 		}
+		return self;
 	}
 }
 @end

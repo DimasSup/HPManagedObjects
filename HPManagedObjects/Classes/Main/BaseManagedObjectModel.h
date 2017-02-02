@@ -31,7 +31,7 @@
  *
  *  @return always return <i>itself</i>
  */
-- (nullable id) updateWithDictionary:(nullable NSDictionary*)dictionary;
+- (nonnull instancetype) updateWithDictionary:(nullable NSDictionary*)dictionary;
 
 /*!
  *  @brief  String representation of instance in jsone format
