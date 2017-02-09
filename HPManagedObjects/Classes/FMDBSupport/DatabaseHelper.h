@@ -14,14 +14,14 @@
 @interface DatabaseHelper : NSObject
 
 
-+(NSArray*)executeSelect:(NSString*)type db:(FMDatabase*)db where:(NSString*)where;
-+(void)executeUpdate:(BaseManagedObjectModel*)model db:(FMDatabase*)db where:(NSString*)where;
-+(void)executeUpdate:(BaseManagedObjectModel*)model db:(FMDatabase*)db;
-+(NSInteger)executeInsert:(BaseManagedObjectModel*)model db:(FMDatabase*)db;
-+(NSInteger)executeInsert:(BaseManagedObjectModel*)model db:(FMDatabase*)db forced:(BOOL)forced;
-+(void)executeDelete:(NSInteger)entityId type:(NSString*)type db:(FMDatabase*)db;
-+(void)executeInsertArray:(NSArray*)models db:(FMDatabase*)db;
-+(void)executeInsertArray:(NSArray*)models db:(FMDatabase*)db forced:(BOOL)forced;
-+(void)executeDeleteType:(NSString*)type condition:(NSString*)condition db:(FMDatabase*)db;
++(NSArray* _Nonnull)executeSelect:(NSString*_Nonnull)type db:(FMDatabase* _Nonnull)db where:(NSString*_Nullable)where;
++(void)executeUpdate:(BaseManagedObjectModel*_Nonnull)model db:(FMDatabase*_Nonnull)db where:(NSString* _Nonnull)where;
++(void)executeUpdate:(BaseManagedObjectModel*_Nonnull)model db:(FMDatabase*_Nonnull)db;
++(NSInteger)executeInsert:(BaseManagedObjectModel*_Nonnull)model db:(FMDatabase*_Nonnull)db;
++(NSInteger)executeInsert:(BaseManagedObjectModel*_Nonnull)model db:(FMDatabase*_Nonnull)db forced:(BOOL)forced;
++(void)executeDelete:(NSInteger)entityId type:(NSString*_Nonnull)type db:(FMDatabase*_Nonnull)db;
++(void)executeInsertArray:(NSArray*_Nonnull)models db:(FMDatabase*_Nonnull)db;
++(void)executeInsertArray:(NSArray*_Nonnull)models db:(FMDatabase*_Nonnull)db forced:(BOOL)forced;
++(void)executeDeleteType:(NSString*_Nonnull)type condition:(NSString*_Nonnull)condition db:(FMDatabase*_Nonnull)db;
 
 @end
