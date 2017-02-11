@@ -16,7 +16,11 @@
 
 +(NSArray*)newObjectsFromJSONArray:(NSArray*)jsonArray className:(NSString*)className;
 +(NSData *)nsDataFromNSObject:(id)object;
++(NSData *)nsDataFromNSObject:(id)object isJson:(BOOL*)isJson;
 +(NSData *)nsDataFromNSArray:(NSArray *)array;
+
+
++(id)deserialize:(NSData*)data toClass:(NSString*)className error:(NSError **)error;
 
 +(NSString*) toJsonString:(id)obj prettyPrint:(BOOL)prettyPrint;
 @end

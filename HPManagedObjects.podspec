@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'HPManagedObjects'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of HPManagedObjects.'
+  s.version          = '1.0.7'
+  s.summary          = 'Lib with BaseManagedObjectModel that allow parse json and database'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -21,24 +21,31 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://xp-dev.com/git/HPManagedObjects'
+  s.homepage         = 'https://github.com/DimasSup'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
+  s.license          = { :type => 'GPL-3.0', :file => 'LICENSE' }
   s.author           = { 'DimasSup' => 'dima.teleban@gmail.com' }
-  s.source           = { :git => 'https://xp-dev.com/git/HPManagedObjects', :tag => "v#{s.version}" }
+  s.source           = { :git => 'https://github.com/DimasSup/HPManagedObjects.git', :tag => "v#{s.version}" }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'HPManagedObjects/Classes/**/*'
-  
   # s.resource_bundles = {
   #   'HPManagedObjects' => ['HPManagedObjects/Assets/*.png']
   # }
 
+  s.subspec 'Main' do |main|
+   main.source_files   = 'HPManagedObjects/Classes/{Main,HelpClasses}/**/*'
+   main.public_header_files = 'HPManagedObjects/Classes/{Main,HelpClasses}/**/*.h'
+  end
+
+  s.subspec 'FMDB' do |fmdb|
+   fmdb.source_files   = 'HPManagedObjects/Classes/FMDBSupport/**/*'
+
+   fmdb.public_header_files = 'HPManagedObjects/Classes/FMDBSupport/**/*.h'
+   fmdb.dependency 'HPManagedObjects/Main'
+   fmdb.dependency 'FMDB'
+  end
 
 
-  s.public_header_files = 'HPManagedObjects/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  s.dependency 'FMDB'
 end

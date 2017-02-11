@@ -11,16 +11,16 @@
 
 @interface Mapping : NSObject
 
--(id)init:(NSArray*)mappings idName:(NSString*)idName idPropertyName:(NSString*)idPropertyName tableName:(NSString*)tableName;
+-(nullable id)init:(nonnull NSArray*)mappings idName:(nullable NSString*)idName idPropertyName:(nullable NSString* )idPropertyName tableName:(nullable NSString*)tableName;
 
 /*!
  *  @brief  Should save source dictionary for save unmapped json fields?
  * if yes <b><i>mappedClass</i>.__sourceDictionary</b> will be contain source dictionary;
  */
 @property(nonatomic)BOOL saveSource;
-@property(nonatomic, strong) NSMutableArray *mapings;
-@property(nonatomic, strong) NSString *idName;
-@property(nonatomic, strong) NSString *idPropertyName;
-@property(nonatomic, strong) NSString *tableName;
+@property(nonatomic, strong, nullable) NSMutableArray<MappingDescriptor*> *mapings;
+@property(nonatomic, strong, nullable) NSString *idName;
+@property(nonatomic, strong, nullable) NSString *idPropertyName;
+@property(nonatomic, strong, nullable) NSString *tableName;
 
 @end

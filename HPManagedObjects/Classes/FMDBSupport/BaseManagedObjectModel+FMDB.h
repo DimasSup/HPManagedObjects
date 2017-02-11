@@ -15,5 +15,5 @@
  *
  *  @param resultSet FMResultSet (FMDatabase class which contain row info)
  */
-- (void)updateFromDbSet:(FMResultSet*)resultSet;
+- (nonnull instancetype)updateFromDbSet:(FMResultSet*_Nonnull)resultSet;
 @end
