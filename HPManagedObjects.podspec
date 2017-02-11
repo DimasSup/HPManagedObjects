@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
 					 Fast way make you class support  JSON serializing/deserializing
                        DESC
 
-  s.homepage         = 'https://github.com/DimasSup'
+  s.homepage         = 'https://github.com/DimasSup/HPManagedObjects'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'GPL-3.0', :file => 'LICENSE' }
   s.author           = { 'DimasSup' => 'dima.teleban@gmail.com' }

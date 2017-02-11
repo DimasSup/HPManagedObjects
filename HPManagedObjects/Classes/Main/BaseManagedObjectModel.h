@@ -54,20 +54,41 @@
 
 #pragma mark - static methods
 /*!
- *  @remark BaseMangedObjectModel return nil value
+ *  @remark BaseMangedObjectModel return empty mapping object.
+ *  Always use -getCachedMapping method.
  *
- *  @return Mapping instance which containt fields which should serialized
+ *  @return Mapping instance which contain fields which should serialized
  */
 +(nonnull Mapping*)mapping;
+
+/*!
+ * @note if you need get Mapping -  always use this method. it use cache for prevent create new instance of Mapping each object
+ * @return Mapping instance which contain fields which should serialized
+ */
 +(nonnull Mapping*)getCachedMapping;
 /*!
  *  @brief  If you need create SQLite table for model -  call this.
- *  @remark BaseManagedObjectModel.mapping should have not empty <i>tableName</i>, <i>idName</i>, <i>idPropertyName</i> 
+ *  @note BaseManagedObjectModel.mapping should have not empty <i>tableName</i>, <i>idName</i>, <i>idPropertyName</i>
  *  @return string with strings which you can insert in to update request to FBDatabase
  */
 +(nonnull NSString*)generatDBTableCreateString;
 
+/*!
+ * Parse string date representation to NSDate with given format. Used cached formatters for performance.
+ * @param format string with format
+ * @param value string date representation
+ * @result NSDate parsed date. Nil if string can't be parsed.
+ */
 +(nullable NSDate *)getDate:(nullable  NSString*)format value:(nonnull id)value;
+/*!
+ * Convert make string from date.
+ * @param format string with format
+ * @param value NSDate object
+ * @result NSString parsed date. Nil if date cont be formatted
+ */
 +(nullable NSString*)getDateString:(nullable NSString*)format value:(nonnull id)value;
+/*!
+ * Get cached NSDateFormatter with format
+ */
 +(nonnull NSDateFormatter*)dateFormatterForFormat:(nullable NSString*)format;
 @end

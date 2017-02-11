@@ -13,8 +13,16 @@
 
 @interface DatabaseHelper : NSObject
 
-
+/**
+ Select records from db, and deserialize like 'type' object
+ 
+ @param type BaseManagedObjectModel class name
+ @param db databaase
+ @param where SQLite where parameters, also can pass ORDER BY and other
+ @return Array of 'type' objects selected from DB
+ */
 +(NSArray* _Nonnull)executeSelect:(NSString*_Nonnull)type db:(FMDatabase* _Nonnull)db where:(NSString*_Nullable)where;
+
 +(void)executeUpdate:(BaseManagedObjectModel*_Nonnull)model db:(FMDatabase*_Nonnull)db where:(NSString* _Nonnull)where;
 +(void)executeUpdate:(BaseManagedObjectModel*_Nonnull)model db:(FMDatabase*_Nonnull)db;
 +(NSInteger)executeInsert:(BaseManagedObjectModel*_Nonnull)model db:(FMDatabase*_Nonnull)db;
