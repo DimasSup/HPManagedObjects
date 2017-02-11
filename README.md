@@ -13,7 +13,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
-HPManagedObjects is available through [DSPods](source 'https://github.com/DimasSup/DSPods'). To install
+HPManagedObjects is available through 'DSPods'(link 'https://github.com/DimasSup/DSPods'). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
