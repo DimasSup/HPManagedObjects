@@ -16,6 +16,7 @@
 {
 	BaseManagedObjectModel* object = [BaseManagedObjectModel new];
 	NSDictionary* dic = object.toDictionary;
+	NSLog(@"%@",dic);
     // Override point for customization after application launch.
     return YES;
 }

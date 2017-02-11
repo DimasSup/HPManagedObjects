@@ -11,7 +11,7 @@
 
 @interface Mapping : NSObject
 
--(nullable id)init:(nonnull NSArray*)mappings idName:(nullable NSString*)idName idPropertyName:(nullable NSString* )idPropertyName tableName:(nullable NSString*)tableName;
+-(nonnull id)init:(nonnull NSArray*)mappings idName:(nullable NSString*)idName idPropertyName:(nullable NSString* )idPropertyName tableName:(nullable NSString*)tableName;
 
 /*!
  *  @brief  Should save source dictionary for save unmapped json fields?

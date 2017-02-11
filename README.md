@@ -1,6 +1,4 @@
 # HPManagedObjects
-source 'https://github.com/DimasSup/DSPods.git'
-
 [![CI Status](http://img.shields.io/travis/DimasSup/HPManagedObjects.svg?style=flat)](https://travis-ci.org/DimasSup/HPManagedObjects)
 [![Version](https://img.shields.io/cocoapods/v/HPManagedObjects.svg?style=flat)](http://cocoapods.org/pods/HPManagedObjects)
 [![License](https://img.shields.io/cocoapods/l/HPManagedObjects.svg?style=flat)](http://cocoapods.org/pods/HPManagedObjects)
@@ -197,7 +195,7 @@ Import HPManagedObjects in to your file
 
 ## Installation
 
-HPManagedObjects is available through 'DSPods'(link 'https://github.com/DimasSup/DSPods'). To install
+HPManagedObjects is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby

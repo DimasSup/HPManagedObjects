@@ -8,9 +8,9 @@
 
 Pod::Spec.new do |s|
   s.name             = 'HPManagedObjects'
-  s.version          = '1.0.8'
+  s.version          = '1.0.10'
   s.summary          = 'Lib with BaseManagedObjectModel that allow parse json and database'
-
+  
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
 #   * Try to keep it short, snappy and to the point.
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+					 Fast way make you class support  JSON serializing/deserializing
                        DESC
 
   s.homepage         = 'https://github.com/DimasSup'
