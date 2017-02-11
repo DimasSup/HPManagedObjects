@@ -235,8 +235,6 @@ HPManagedObjects is available through [CocoaPods](source 'http://cocoapods.org')
 it, simply add the following line to your Podfile:
 
 ```ruby
-source 'https://github.com/DimasSup/DSPods.git'
-
 pod "HPManagedObjects/Main"
 #if you using FMDB - 
 pod "HPManagedObjects"
