@@ -1,4 +1,5 @@
 # HPManagedObjects
+source 'https://github.com/DimasSup/DSPods.git'
 
 [![CI Status](http://img.shields.io/travis/DimasSup/HPManagedObjects.svg?style=flat)](https://travis-ci.org/DimasSup/HPManagedObjects)
 [![Version](https://img.shields.io/cocoapods/v/HPManagedObjects.svg?style=flat)](http://cocoapods.org/pods/HPManagedObjects)
@@ -20,6 +21,7 @@ Import HPManagedObjects in to your file
 
 ```obj-c
 
+
 @interface BaseOtherJsonClassObject : BaseManagedObjectModel
 @property(nonatomic,strong,nullable)NSString* baseIdentifier;
 @property(nonatomic,assign)int objectType;//0 - OtherJsonClassObject, 1 - SecondOtherJsonClassObject, 2 - ThirdOtherJsonClassObject
@@ -40,6 +42,7 @@ Import HPManagedObjects in to your file
 }
 @end
 
+
 @interface OtherJsonClassObject : BaseOtherJsonClassObject
 @property(nonatomic,strong,nullable)NSString* anySomeProperty;
 @end
@@ -53,6 +56,8 @@ Import HPManagedObjects in to your file
 	return mapping;
 }
 @end
+
+
 @interface SecondOtherJsonClassObject : BaseOtherJsonClassObject
 @property(nonatomic,assign)int secondProperty;
 @end
@@ -64,6 +69,8 @@ Import HPManagedObjects in to your file
 	return mapping;
 }
 @end
+
+
 @interface ThirdOtherJsonClassObject : BaseOtherJsonClassObject
 @property(nonatomic,strong)id anyValue;
 @end
@@ -76,8 +83,8 @@ Import HPManagedObjects in to your file
 	return mapping;
 }
 @end
-
-
+```
+```obj-c
 
 @interface SimpleJSONObject: BaseManagedObjectModel{
 }
@@ -112,26 +119,41 @@ Import HPManagedObjects in to your file
 	//Serialize OtherJsonClassObject to dictionary, deserialize dictionary to OtherJsonClassObject
 	[mapping.mapings addObject:[MappingDescriptor descriptorBy:@"otherObject" jsonName:@"subclass" className:@"OtherJsonClassObject"]];
 	
+	//User custom serializer/deserializer for property
+	[mapping.mapings addObject:[MappingDescriptor descriptorBy:@"point" jsonName:@"point" className:nil columnName:nil asString:FALSE convert:^id(NSString* value) {
+		//Convert JSON value to needed class
+		NSArray* arr =  [value componentsSeparatedByString:@":"];
+		CGPoint point = CGPointZero;
+		if(arr.count == 2)
+		{
+			point.x = [[arr firstObject] floatValue];
+			point.y = [[arr lastObject] floatValue];
+		}
+		return [NSValue valueWithCGPoint:CGPointZero];
+	} convertBack:^id(NSValue* value) {
+		CGPoint point = [value CGPointValue];
+		return [NSString stringWithFormat:@"%f:%f",point.x,point.y];
+	}]];
 	
 	
 	NSArray<TypeSelector*>* typeSelectors = @[
-							   //if object in array containt field "base_id" object will be deserialize to 'OtherJsonClassObject'
-							   [TypeSelector selectorBy:@"anyValue" className:@"ThirdOtherJsonClassObject"],
-							   //If object in array contain field 'type' and it is equal to '1' then object will be deserialize to 'SecondOtherJsonClassObject'
-							   [TypeSelector selectorBy:@"type" value:@(1) className:@"SecondOtherJsonClassObject"],
-							   //Make custom check for json property value, if block return YES - use OtherJsonClassObject as object type
-							   [TypeSelector selectorBy:@"type" byValueBlock:^BOOL(id value) {
-								   NSNumber* numb = value;
-								   if([numb intValue] == 0)
-								   {
-									   return YES;
-								   }
-								   return NO;
-								   
-							   } className:@"OtherJsonClassObject"],
-							   //If any type selector does not match -  use 'self' if you want use class as default
-							   [TypeSelector selectorBy:@"self" className:@"BaseOtherJsonClassObject"],
-							   ];
+											  //if object in array containt field "anyValue" object will be deserialize to 'OtherJsonClassObject'
+											  [TypeSelector selectorBy:@"anyValue" className:@"ThirdOtherJsonClassObject"],
+											  //If object in array contain field 'type' and it is equal to '1' then object will be deserialize to 'SecondOtherJsonClassObject'
+											  [TypeSelector selectorBy:@"type" value:@(1) className:@"SecondOtherJsonClassObject"],
+											  //Make custom check for json property value, if block return YES - use OtherJsonClassObject as object type
+											  [TypeSelector selectorBy:@"type" byValueBlock:^BOOL(id value) {
+												  NSNumber* numb = value;
+												  if([numb intValue] == 0)
+												  {
+													  return YES;
+												  }
+												  return NO;
+												  
+											  } className:@"OtherJsonClassObject"],
+											  //If any type selector does not match -  use 'self' if you want use class as default
+											  [TypeSelector selectorBy:@"self" className:@"BaseOtherJsonClassObject"],
+											  ];
 	
 	MappingDescriptor* descriptor = [MappingDescriptor descriptorBy:@"otherObjectsArray"
 														   jsonName:@"objc_array"
@@ -140,7 +162,8 @@ Import HPManagedObjects in to your file
 	
 	
 	
-	
+	//Recognize object type with custom logic. In block -  'rootDictionary'(my be nil) - object that containt 'value' object
+	//'value' object -  json object that should be deserialize.
 	descriptor = [MappingDescriptor descriptorBy:@"otherObjectsWitBlockSelectorArray"
 										jsonName:@"objc_array_v2" columnName:nil classNameBlock:^NSString *(id rootDictionary, id value) {
 											if([value isKindOfClass:[NSDictionary class]])
@@ -168,7 +191,6 @@ Import HPManagedObjects in to your file
 	return mapping;
 }
 @end
-
 ```
 
 ## Requirements
