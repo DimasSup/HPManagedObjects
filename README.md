@@ -231,12 +231,10 @@ SimpleJSONObject* obj = [[SimpleJSONObject alloc] init];
 
 ## Installation
 
-HPManagedObjects is available through [CocoaPods](http://cocoapods.org). To install
+HPManagedObjects is available through [CocoaPods](source 'http://cocoapods.org'). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-source 'https://github.com/DimasSup/DSPods.git'
-
 pod "HPManagedObjects/Main"
 #if you using FMDB - 
 pod "HPManagedObjects"
