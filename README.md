@@ -116,6 +116,9 @@ Import HPManagedObjects in to your file
 	//No need specified array of items, it recognizes array and dictionary
 	[mapping.mapings addObject:[MappingDescriptor descriptorBy:@"anyValues" jsonName:@"vals_map"]];
 	
+	//Serialize/deserialize date field in UTC zone
+	[mapping.mapings addObject:[MappingDescriptor descriptorBy:@"creationDate" jsonName:@"create_date" columnName:nil format:@"<your_date_fromat>"]];
+	
 	//Serialize OtherJsonClassObject to dictionary, deserialize dictionary to OtherJsonClassObject
 	[mapping.mapings addObject:[MappingDescriptor descriptorBy:@"otherObject" jsonName:@"subclass" className:@"OtherJsonClassObject"]];
 	
@@ -192,7 +195,19 @@ Import HPManagedObjects in to your file
 }
 @end
 ```
+## FMDB Support
+If you using FMDB SQLite as your data storage -  its easy to use HPManagedObjects for this.
+```obj-c
+//Setup table name
+mapping.tableName = @"your_table_name";
+//If you have primary key -  setup it
+mapping.idPropertyName = @"dabaseId";
+mapping.idName = @"_id";//Primary column name in table
 
+//For peroperty description that should saved in Database set column name
+descriptor.columnName = @"type";
+
+```
 ## Requirements
 
 ## Installation
@@ -203,6 +218,8 @@ it, simply add the following line to your Podfile:
 ```ruby
 source 'https://github.com/DimasSup/DSPods.git'
 
+pod "HPManagedObjects/Main"
+#if you using FMDB - 
 pod "HPManagedObjects"
 ```
 
