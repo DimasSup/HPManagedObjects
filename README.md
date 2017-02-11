@@ -195,6 +195,17 @@ Import HPManagedObjects in to your file
 }
 @end
 ```
+
+Using:
+```obj-c
+SimpleJSONObject* obj = [[SimpleJSONObject alloc] init];
+//Update object with JSON dictionary (in obj-c you can pass NSString, it will serialize to JSON inside)
+[obj updateWithDictionary:dictionary];
+
+//Serialize object to JSON Dictionary
+[obj toDictionary];
+```
+
 ## FMDB Support
 If you using FMDB SQLite as your data storage -  its easy to use HPManagedObjects for this.
 ```obj-c
@@ -208,6 +219,16 @@ mapping.idName = @"_id";//Primary column name in table
 descriptor.columnName = @"type";
 
 ```
+You can use 'DatabaseHelper' class for make you life easy with using fmdb update/insert/select logic for HPBaseManagedObjects.
+
+For prase FMResultSet to Object use:
+```obj-c
+SimpleJSONObject* obj = [[SimpleJSONObject alloc] init];
+[obj updateFromDbSet:fmresult];
+```
+
+	
+
 ## Requirements
 
 ## Installation
