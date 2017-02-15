@@ -571,8 +571,8 @@ static const char *getPropertyType(objc_property_t property) {
 		NSString* className =[NSString stringWithCString:propertyType encoding:NSASCIIStringEncoding];
 		if(className.length)
 		{
-			description.resultPropertyClassName = className;
 			description.resultPropertyClass = NSClassFromString(className)?:[NSNull class];
+			description.resultPropertyClassName = [description.resultPropertyClass className];
 		}
 	}
 	
