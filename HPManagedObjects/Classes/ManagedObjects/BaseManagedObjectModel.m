@@ -121,7 +121,7 @@ static const char *getPropertyType(objc_property_t property) {
 				id value = [dictionary objectForKey:descriptor.jsonName];
 				
 				// TODO:  check this logic !value
-				
+				value = [descriptor convertValue:value];
 				if(!value && descriptor.canUseRoot == NO)
 				{
 					continue;
@@ -134,6 +134,7 @@ static const char *getPropertyType(objc_property_t property) {
 					
 					continue;
 				}
+				
 				
 				
 				if ([descriptor.resultPropertyClass isSubclassOfClass:[NSArray class]])
