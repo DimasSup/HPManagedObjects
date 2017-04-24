@@ -424,6 +424,9 @@ static const char *getPropertyType(objc_property_t property) {
 			}
 #endif
 			
+			if(value){
+				value = [descriptor convertValueBack:value];
+			}
 			
 			if (!value)
 			{
@@ -433,6 +436,7 @@ static const char *getPropertyType(objc_property_t property) {
 				}
 				continue;
 			}
+		
 			if([value isKindOfClass:[BaseManagedObjectModel class]])
 			{
 				NSDictionary* dic = [value toDictionary];
@@ -499,12 +503,7 @@ static const char *getPropertyType(objc_property_t property) {
 			}
 			else if(value)
 			{
-				value = [descriptor convertValueBack:value];
-				if(value)
-				{
-					
-					[result setObject:value forKey:descriptor.jsonName];
-				}
+				[result setObject:value forKey:descriptor.jsonName];
 			}
 		}
 		
