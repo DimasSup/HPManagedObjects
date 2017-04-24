@@ -224,7 +224,7 @@ static const char *getPropertyType(objc_property_t property) {
 				}
 				else if(value)
 				{
-					[self setValue:[descriptor convertValue:value] forKey:descriptor.propertyName];
+					[self setValue:value forKey:descriptor.propertyName];
 					
 				}
 			}
