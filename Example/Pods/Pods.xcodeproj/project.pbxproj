@@ -30,7 +30,7 @@
 		7081F8626593A101C249AA7D56B2B55B /* TypeSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = 36D35461BC1BFEFD97B83DCAFCC81621 /* TypeSelector.m */; };
 		72563ADE99DC9E753B27D48B16AA3654 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57B339C607FE63DDDF6BCBABD479561B /* Foundation.framework */; };
 		838845F7ACBA57BC066B96D2956A3550 /* HPManagedObjects-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4AB153D73DE38F0A96FF9E6DFB6EFB12 /* HPManagedObjects-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		84367AF61EE1C1C90090D36C /* NSString+AddSuffix.h in Headers */ = {isa = PBXBuildFile; fileRef = 84367AF41EE1C1C90090D36C /* NSString+AddSuffix.h */; };
+		84367AF61EE1C1C90090D36C /* NSString+AddSuffix.h in Headers */ = {isa = PBXBuildFile; fileRef = 84367AF41EE1C1C90090D36C /* NSString+AddSuffix.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		84367AF71EE1C1C90090D36C /* NSString+AddSuffix.m in Sources */ = {isa = PBXBuildFile; fileRef = 84367AF51EE1C1C90090D36C /* NSString+AddSuffix.m */; };
 		87ECA447DB887426665260651B7F147E /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF62A1F971FFFC84C36F474CF296297 /* FMResultSet.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		890073F4807D96BBECCC35664C921409 /* TypeSelector.h in Headers */ = {isa = PBXBuildFile; fileRef = 27FFF647F8A292664C21558536669004 /* TypeSelector.h */; settings = {ATTRIBUTES = (Public, ); }; };
