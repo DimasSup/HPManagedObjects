@@ -39,6 +39,8 @@ typedef NS_OPTIONS(NSUInteger, EGenericDeviceType){
 + (BOOL)is5Ich;
 + (NSString*)uniqueIdentifier;
 + (NSString*)uniqueIdentifierForMessage;
++ (NSString*)uniqueIdentifierWithUser:(NSString*)userId;
++ (NSString*)uniqueIdentifierForMessageWithChatId:(NSString*)chatId;
 + (EGenericDeviceType)deviceType;
 
 @end

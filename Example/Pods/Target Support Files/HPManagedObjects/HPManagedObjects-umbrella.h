@@ -9,6 +9,7 @@
 #import "Macroses.h"
 #import "NSObject+CallInstanceMethod.h"
 #import "NSObject+ClassName.h"
+#import "NSString+AddSuffix.h"
 #import "BaseManagedObjectModel.h"
 #import "BaseManagedObjectModel_Private.h"
 #import "Mapping.h"

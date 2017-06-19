@@ -1,14 +1,14 @@
 PODS:
-  - FMDB (2.6.2):
-    - FMDB/standard (= 2.6.2)
-  - FMDB/standard (2.6.2)
-  - HPManagedObjects (1.0.7):
-    - HPManagedObjects/FMDB (= 1.0.7)
-    - HPManagedObjects/Main (= 1.0.7)
-  - HPManagedObjects/FMDB (1.0.7):
+  - FMDB (2.7.2):
+    - FMDB/standard (= 2.7.2)
+  - FMDB/standard (2.7.2)
+  - HPManagedObjects (1.0.12):
+    - HPManagedObjects/FMDB (= 1.0.12)
+    - HPManagedObjects/Main (= 1.0.12)
+  - HPManagedObjects/FMDB (1.0.12):
     - FMDB
     - HPManagedObjects/Main
-  - HPManagedObjects/Main (1.0.7)
+  - HPManagedObjects/Main (1.0.12)
 
 DEPENDENCIES:
   - HPManagedObjects (from `../`)
@@ -18,8 +18,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
-  HPManagedObjects: 418058264c32151a34c52ce00b0295b094ac4cb0
+  FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
+  HPManagedObjects: 2db505ce885dc993e9ce9321bd1e8bbaad6e2347
 
 PODFILE CHECKSUM: a0f9294bc267f6b6623bb326a931602d798bc478
 
