@@ -46,9 +46,9 @@ static int GenericHelper_isRetina = -1;
 	@synchronized (self)
 	{
 		CFUUIDRef theUUID = CFUUIDCreate(NULL);
-		CFStringRef string = CFUUIDCreateString(NULL, theUUID);
+		NSString* uuid =  (__bridge_transfer NSString *)CFUUIDCreateString(kCFAllocatorDefault, theUUID);
 		CFRelease(theUUID);
-		return (__bridge NSString *)string;
+		return uuid;
 	}
 	
 }
