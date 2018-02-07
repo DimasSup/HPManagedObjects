@@ -18,7 +18,7 @@
 		Mapping* mapping = [myClass getCachedMapping];
 		if(mapping.idPropertyName && mapping.idName)
 		{
-			id value = [resultSet objectForColumnName:mapping.idName];
+			id value = [resultSet objectForColumn:mapping.idName];
 			if(value && value!=[NSNull null])
 			{
 				[self setValue:value forKey:mapping.idPropertyName];
@@ -27,13 +27,13 @@
 		NSMutableDictionary* resultSetDict = [[NSMutableDictionary alloc] initWithCapacity:resultSet.columnCount];
 		for (NSString* key in resultSet.columnNameToIndexMap)
 		{
-			id result = [resultSet objectForColumnName:key];
+			id result = [resultSet objectForColumn:key];
 			if(result)
 				resultSetDict[key] = result;
 		}
 		for (MappingDescriptor* descriptor in mapping.mapings) {
 			if(!descriptor.columnName || !descriptor.propertyName)continue;
-			id value = [resultSet objectForColumnName:descriptor.columnName];
+			id value = [resultSet objectForColumn:descriptor.columnName];
 			if(value && value != [NSNull null])
 			{
 				if(descriptor.asString)

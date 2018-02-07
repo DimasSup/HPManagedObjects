@@ -10,7 +10,7 @@
 
 @interface HPDelegatesContainer()
 {
-	__block NSMutableArray<id(^)()>* _delegates;
+	__block NSMutableArray<id(^)(void)>* _delegates;
 }
 @end
 
@@ -43,7 +43,7 @@
 	{
 		for (int i = 0; i<_delegates.count; i++)
 		{
-			id(^tmp)() = _delegates[i];
+			id(^tmp)(void) = _delegates[i];
 			id delegate = tmp();
 			if(delegate==object)
 			{
@@ -61,7 +61,7 @@
 		BOOL isStop = NO;
 		for (int i = 0; i<_delegates.count; i++)
 		{
-			id(^tmp)() = _delegates[i];
+			id(^tmp)(void) = _delegates[i];
 			id delegate = tmp();
 			if(delegate)
 			{

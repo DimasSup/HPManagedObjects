@@ -121,7 +121,7 @@ static const char *getPropertyType(objc_property_t property) {
 				id value = [dictionary objectForKey:descriptor.jsonName];
 				
 				// TODO:  check this logic !value
-				
+				value = [descriptor convertValue:value];
 				if(!value && descriptor.canUseRoot == NO)
 				{
 					continue;
@@ -134,6 +134,7 @@ static const char *getPropertyType(objc_property_t property) {
 					
 					continue;
 				}
+				
 				
 				
 				if ([descriptor.resultPropertyClass isSubclassOfClass:[NSArray class]])
@@ -223,7 +224,7 @@ static const char *getPropertyType(objc_property_t property) {
 				}
 				else if(value)
 				{
-					[self setValue:[descriptor convertValue:value] forKey:descriptor.propertyName];
+					[self setValue:value forKey:descriptor.propertyName];
 					
 				}
 			}
@@ -424,6 +425,9 @@ static const char *getPropertyType(objc_property_t property) {
 			}
 #endif
 			
+			if(value){
+				value = [descriptor convertValueBack:value];
+			}
 			
 			if (!value)
 			{
@@ -433,6 +437,7 @@ static const char *getPropertyType(objc_property_t property) {
 				}
 				continue;
 			}
+		
 			if([value isKindOfClass:[BaseManagedObjectModel class]])
 			{
 				NSDictionary* dic = [value toDictionary];
@@ -499,12 +504,7 @@ static const char *getPropertyType(objc_property_t property) {
 			}
 			else if(value)
 			{
-				value = [descriptor convertValueBack:value];
-				if(value)
-				{
-					
-					[result setObject:value forKey:descriptor.jsonName];
-				}
+				[result setObject:value forKey:descriptor.jsonName];
 			}
 		}
 		

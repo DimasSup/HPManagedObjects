@@ -43,12 +43,31 @@ static int GenericHelper_isRetina = -1;
 }
 
 +(NSString *)uniqueIdentifier {
-	CFUUIDRef theUUID = CFUUIDCreate(NULL);
-	CFStringRef string = CFUUIDCreateString(NULL, theUUID);
-	CFRelease(theUUID);
-	return (__bridge NSString *)string;
+	@synchronized (self)
+	{
+		CFUUIDRef theUUID = CFUUIDCreate(NULL);
+		CFStringRef string = CFUUIDCreateString(NULL, theUUID);
+		CFRelease(theUUID);
+		CFAutorelease(string);
+		return (__bridge NSString *)string;
+	}
+	
 }
-
++(NSString*)uniqueIdentifierWithUser:(NSString*)userId{
+	@synchronized (self)
+	{
+		NSString* value = [[[[@"1-" stringByAppendingString:userId] stringByAppendingString:[self randomString]]  stringByAppendingString:[self uniqueIdentifier]] lowercaseString];
+		return value;
+	}
+}
++(NSString*)uniqueIdentifierForMessageWithChatId:(NSString*)chatId
+{
+	@synchronized (self)
+	{
+		NSString* value = chatId.length? [[[[[[@"1-" stringByAppendingString:chatId] stringByAppendingString:@"-"] stringByAppendingString:[self randomStringSeed]] stringByAppendingString:[self randomString]]  stringByAppendingString:[self uniqueIdentifier]] lowercaseString]:[[[[@"1-" stringByAppendingString:[self randomStringSeed]] stringByAppendingString:[self randomString]]  stringByAppendingString:[self uniqueIdentifier]] lowercaseString];
+		return value;
+	}
+}
 +(NSString*)uniqueIdentifierForMessage
 {
 	@synchronized (self)

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface HPDelegatesContainer<__covariant ObjectType> : NSObject
-@property(nonatomic,strong,readonly,nonnull)NSArray<id(^)()>* delegates;
+@property(nonatomic,strong,readonly,nonnull)NSArray<id(^)(void)>* delegates;
 -(void)addDelegatesObject:(ObjectType _Nonnull)object;
 -(void)removeDelegatesObject:(ObjectType _Nonnull)object;
 /*!
