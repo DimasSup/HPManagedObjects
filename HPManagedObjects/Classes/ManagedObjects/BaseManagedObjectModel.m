@@ -319,6 +319,9 @@ static const char *getPropertyType(objc_property_t property) {
 
 
 - (NSMutableArray *)getArray:(MappingDescriptor *)descriptor rootDict:(NSDictionary*)rootDict value:(id)value {
+	if([value isKindOfClass:[NSString class]]){
+		value = [NSJSONSerialization JSONObjectWithData:[(NSString*)value dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+	}
 	NSArray* array = value;
 	
 	NSMutableArray* nestedArray = [NSMutableArray new];
@@ -356,6 +359,9 @@ static const char *getPropertyType(objc_property_t property) {
 }
 
 - (NSMutableArray *)getArray:(MappingDescriptor *)descriptor value:(id)value {
+	if([value isKindOfClass:[NSString class]]){
+		value = [NSJSONSerialization JSONObjectWithData:[(NSString*)value dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+	}
 	NSArray* array = value;
 	
 	NSMutableArray* nestedArray = [NSMutableArray new];
