@@ -38,7 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		15209356DD2C6192EA7D52FC /* HPManagedObjects.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = HPManagedObjects.podspec; path = ../HPManagedObjects.podspec; sourceTree = "<group>"; };
+		15209356DD2C6192EA7D52FC /* HPManagedObjects.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = HPManagedObjects.podspec; path = ../HPManagedObjects.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		3ACE3FF65B3B272CC766B5C7 /* Pods-HPManagedObjects_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HPManagedObjects_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-HPManagedObjects_Example/Pods-HPManagedObjects_Example.release.xcconfig"; sourceTree = "<group>"; };
 		3DCAD3C68FCB08D68EC554FC /* Pods_HPManagedObjects_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HPManagedObjects_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F6B5E617655B075E323692B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
