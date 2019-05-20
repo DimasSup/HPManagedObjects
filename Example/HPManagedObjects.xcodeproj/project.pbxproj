@@ -38,7 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		15209356DD2C6192EA7D52FC /* HPManagedObjects.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = HPManagedObjects.podspec; path = ../HPManagedObjects.podspec; sourceTree = "<group>"; };
+		15209356DD2C6192EA7D52FC /* HPManagedObjects.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = HPManagedObjects.podspec; path = ../HPManagedObjects.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		3ACE3FF65B3B272CC766B5C7 /* Pods-HPManagedObjects_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HPManagedObjects_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-HPManagedObjects_Example/Pods-HPManagedObjects_Example.release.xcconfig"; sourceTree = "<group>"; };
 		3DCAD3C68FCB08D68EC554FC /* Pods_HPManagedObjects_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HPManagedObjects_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F6B5E617655B075E323692B /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -213,7 +213,6 @@
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				28ABCFB02414B1EEFFCDBFF9 /* [CP] Embed Pods Frameworks */,
-				088CECA3D2242AEDDE55779E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -232,8 +231,6 @@
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				BD2B0B6DA74D806687CADE6A /* [CP] Embed Pods Frameworks */,
-				DFE5444B66532E3AAB29DF37 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -268,6 +265,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -304,21 +302,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		088CECA3D2242AEDDE55779E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HPManagedObjects_Example/Pods-HPManagedObjects_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		210AC753D21C108C435A67EE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -343,7 +326,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-HPManagedObjects_Example/Pods-HPManagedObjects_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-HPManagedObjects_Example/Pods-HPManagedObjects_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/HPManagedObjects/HPManagedObjects.framework",
 			);
@@ -354,22 +337,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HPManagedObjects_Example/Pods-HPManagedObjects_Example-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BD2B0B6DA74D806687CADE6A /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HPManagedObjects_Tests/Pods-HPManagedObjects_Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HPManagedObjects_Example/Pods-HPManagedObjects_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C96F898F081C72C059531D05 /* [CP] Check Pods Manifest.lock */ = {
@@ -388,21 +356,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DFE5444B66532E3AAB29DF37 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HPManagedObjects_Tests/Pods-HPManagedObjects_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

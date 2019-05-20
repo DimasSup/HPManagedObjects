@@ -17,6 +17,7 @@
 #import "Macroses.h"
 #import "NSObject+CallInstanceMethod.h"
 #import "NSObject+ClassName.h"
+#import "NSString+NSString_MD5.h"
 #import "BaseManagedObjectModel.h"
 #import "BaseManagedObjectModel_Private.h"
 #import "Mapping.h"

@@ -33,7 +33,7 @@ static int GenericHelper_isRetina = -1;
 
 +(BOOL)isRetina {
 	if (GenericHelper_isRetina == -1) {
-		GenericHelper_isRetina = [[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] == 2 ? 1 : 0;
+		GenericHelper_isRetina = [[UIScreen mainScreen] respondsToSelector:@selector(scale)] && [[UIScreen mainScreen] scale] >= 2 ? 1 : 0;
 	}
 	return	GenericHelper_isRetina;
 }

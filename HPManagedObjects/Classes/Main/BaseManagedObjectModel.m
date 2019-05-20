@@ -319,6 +319,9 @@ static const char *getPropertyType(objc_property_t property) {
 
 
 - (NSMutableArray *)getArray:(MappingDescriptor *)descriptor rootDict:(NSDictionary*)rootDict value:(id)value {
+	if([value isKindOfClass:[NSString class]]){
+		value = [NSJSONSerialization JSONObjectWithData:[(NSString*)value dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+	}
 	NSArray* array = value;
 	
 	NSMutableArray* nestedArray = [NSMutableArray new];
@@ -356,6 +359,9 @@ static const char *getPropertyType(objc_property_t property) {
 }
 
 - (NSMutableArray *)getArray:(MappingDescriptor *)descriptor value:(id)value {
+	if([value isKindOfClass:[NSString class]]){
+		value = [NSJSONSerialization JSONObjectWithData:[(NSString*)value dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+	}
 	NSArray* array = value;
 	
 	NSMutableArray* nestedArray = [NSMutableArray new];
@@ -464,6 +470,9 @@ static const char *getPropertyType(objc_property_t property) {
 						[array addObject:obj];
 					}
 				}
+				if(descriptor.asString){
+					array = (id)[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:array options:0 error:nil] encoding:NSUTF8StringEncoding];
+				}
 				[result setObject:array forKey:descriptor.jsonName];
 			}
 			else if([value isKindOfClass:[NSDictionary class]])
@@ -488,6 +497,9 @@ static const char *getPropertyType(objc_property_t property) {
 						[result addEntriesFromDictionary:dict];
 					}
 					else{
+						if(descriptor.asString){
+							dict = (id)[[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dict options:0 error:nil] encoding:NSUTF8StringEncoding];
+						}
 						[result setObject:dict forKey:descriptor.jsonName];
 					}
 				}
