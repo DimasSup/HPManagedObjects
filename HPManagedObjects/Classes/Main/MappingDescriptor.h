@@ -25,9 +25,9 @@ typedef NSString* _Nullable (^MappingDescriptionClassNameByParametersBlock) ( id
 @property(nonatomic,strong,nullable)Class resultPropertyClass;
 @property(nonatomic,strong,nullable)NSString* resultPropertyClassName;
 
--(nullable id)init:(nonnull NSString * )propertyName jsonName:(nullable NSString *)jsonName typeSelectors:(nullable NSArray<TypeSelector*> *)typeSelectors;
--(nullable id)init:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName className:(nullable NSString *)className;
--(nullable id)init:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName;
+-(nullable instancetype)init:(nonnull NSString * )propertyName jsonName:(nullable NSString *)jsonName typeSelectors:(nullable NSArray<TypeSelector*> *)typeSelectors;
+-(nullable instancetype)init:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName className:(nullable NSString *)className;
+-(nullable instancetype)init:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName;
 
 @property (nonatomic, strong,nonnull) NSString *propertyName;
 @property (nonatomic, strong,nullable ) NSString *jsonName;
@@ -52,16 +52,16 @@ typedef NSString* _Nullable (^MappingDescriptionClassNameByParametersBlock) ( id
 -(nullable id)convertValue:(nullable id)value;
 -(nullable id)convertValueBack:(nullable id)value;
 
-+(nonnull id)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName className:(nullable NSString *)className;
-+(nonnull id)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName columnName:(nullable NSString *)columnName classNameBlock:(nullable MappingDescriptionClassNameByParametersBlock)classNameBlock;
-+(nonnull id)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName className:(nullable NSString *)className columnName:(nullable NSString *)columnName asString:(BOOL)asString;
-+(nonnull id)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName className:(nullable NSString *)className columnName:(nullable NSString *)columnName asString:(BOOL)asString convert:(nullable MappingDescriptorConverter)convert convertBack:(nullable MappingDescriptorConverter)convertBack;
-+(nonnull id)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName className:(nullable NSString *)className columnName:(nullable NSString *)columnName asString:(BOOL)asString converter:(nullable id<MappingDescriptorConverterProtocol>)converter;
++(nonnull instancetype)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName className:(nullable NSString *)className;
++(nonnull instancetype)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName columnName:(nullable NSString *)columnName classNameBlock:(nullable MappingDescriptionClassNameByParametersBlock)classNameBlock;
++(nonnull instancetype)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName className:(nullable NSString *)className columnName:(nullable NSString *)columnName asString:(BOOL)asString;
++(nonnull instancetype)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName className:(nullable NSString *)className columnName:(nullable NSString *)columnName asString:(BOOL)asString convert:(nullable MappingDescriptorConverter)convert convertBack:(nullable MappingDescriptorConverter)convertBack;
++(nonnull instancetype)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName className:(nullable NSString *)className columnName:(nullable NSString *)columnName asString:(BOOL)asString converter:(nullable id<MappingDescriptorConverterProtocol>)converter;
 
-+(nonnull id)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName typeSelectors:(nullable NSArray<TypeSelector*> *)typeSelectors;
-+(nonnull id)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName;
-+(nonnull id)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName ignoreEmptyOrZeroValue:(BOOL)ignoreEmptyOrZero;
-+(nonnull id)descriptorBy:(nonnull NSString *)propertyName;
-+(nonnull id)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName columnName:(nullable NSString *)columnName;
-+(nonnull id)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName columnName:(nullable NSString *)columnName format:(nullable NSString *)format;
++(nonnull instancetype)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName typeSelectors:(nullable NSArray<TypeSelector*> *)typeSelectors;
++(nonnull instancetype)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName;
++(nonnull instancetype)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName ignoreEmptyOrZeroValue:(BOOL)ignoreEmptyOrZero;
++(nonnull instancetype)descriptorBy:(nonnull NSString *)propertyName;
++(nonnull instancetype)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName columnName:(nullable NSString *)columnName;
++(nonnull instancetype)descriptorBy:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName columnName:(nullable NSString *)columnName format:(nullable NSString *)format;
 @end
