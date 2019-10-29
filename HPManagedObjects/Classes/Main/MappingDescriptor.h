@@ -25,9 +25,9 @@ typedef NSString* _Nullable (^MappingDescriptionClassNameByParametersBlock) ( id
 @property(nonatomic,strong,nullable)Class resultPropertyClass;
 @property(nonatomic,strong,nullable)NSString* resultPropertyClassName;
 
--(nullable instancetype)init:(nonnull NSString * )propertyName jsonName:(nullable NSString *)jsonName typeSelectors:(nullable NSArray<TypeSelector*> *)typeSelectors;
--(nullable instancetype)init:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName className:(nullable NSString *)className;
--(nullable instancetype)init:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName;
+-(nonnull instancetype)init:(nonnull NSString * )propertyName jsonName:(nullable NSString *)jsonName typeSelectors:(nullable NSArray<TypeSelector*> *)typeSelectors;
+-(nonnull instancetype)init:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName className:(nullable NSString *)className;
+-(nonnull instancetype)init:(nonnull NSString *)propertyName jsonName:(nullable NSString *)jsonName;
 
 @property (nonatomic, strong,nonnull) NSString *propertyName;
 @property (nonatomic, strong,nullable ) NSString *jsonName;
