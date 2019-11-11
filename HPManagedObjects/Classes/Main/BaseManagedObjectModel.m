@@ -120,7 +120,7 @@ static const char *getPropertyType(objc_property_t property) {
 				
 				id value = [dictionary objectForKey:descriptor.jsonName];
 				if(value == nil && descriptor.canUseRoot == YES){
-					value = descriptor;
+					value = dictionary;
 				}
 				
 				// TODO:  check this logic !value
