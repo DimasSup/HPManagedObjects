@@ -119,10 +119,13 @@ static const char *getPropertyType(objc_property_t property) {
 				
 				
 				id value = [dictionary objectForKey:descriptor.jsonName];
+				if(value == nil && descriptor.canUseRoot == YES){
+					value = descriptor;
+				}
 				
 				// TODO:  check this logic !value
 				value = [descriptor convertValue:value];
-				if(!value && descriptor.canUseRoot == NO)
+				if(!value)
 				{
 					continue;
 				}
@@ -451,8 +454,13 @@ static const char *getPropertyType(objc_property_t property) {
 					NSString* serilizedProperty = [SerializeHelper toJsonString:dic prettyPrint:NO];
 					[result setObject:serilizedProperty forKey:descriptor.jsonName];
 				}
-				else{
-					[result setObject:dic forKey:descriptor.jsonName];
+				else if (dic){
+					if(descriptor.canUseRoot){
+						[result addEntriesFromDictionary:dic];
+					}
+					else{
+						[result setObject:dic forKey:descriptor.jsonName];
+					}
 				}
 			}
 			else if ([value isKindOfClass:[NSArray class]])
